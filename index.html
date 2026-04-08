@@ -3,71 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ink Tower | El Desafío Vertical</title>
-    <link href="https://fonts.googleapis.com/css2?family=Teko:wght@500;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <title>Ink Tower - Descarga Oficial</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="contenedor">
-        <header class="cabecera-tinta">
+    <div class="container">
+        
+        <header>
             <h1>INK TOWER</h1>
-            <p class="subtitulo">Solo los más rápidos sobreviven.</p>
+            <p class="subtitle">EL DESAFÍO VERTICAL</p>
         </header>
 
         <main>
-            <section class="bloque-info">
-                <div class="marco-video">
-                    <p>[ INSERTE GAMEPLAY AQUÍ ]</p>
+            <section class="info-section">
+                <div class="video-box">
+                    <div class="play-btn">►</div>
+                    <p>GAMEPLAY TRAILER</p>
                 </div>
                 
-                <div class="texto-info">
+                <div class="info-text">
                     <h2>UN SALTO AL VACÍO</h2>
-                    <p>Un error, y vuelves abajo. <strong>Ink Tower</strong> es un juego de parkour indie diseñado para poner a prueba tus reflejos. Gráficos dibujados a mano, físicas implacables y una torre que parece no tener fin.</p>
+                    <p>Un error, y vuelves abajo. Ink Tower es un juego de parkour indie diseñado para poner a prueba tus reflejos. Gráficos retro, físicas implacables y una torre que parece no tener fin.</p>
+                    <ul class="features">
+                        <li>> Precisión extrema requerida</li>
+                        <li>> Atmósfera oscura de 16-bits</li>
+                        <li>> Tablas de clasificación mundiales</li>
+                    </ul>
                 </div>
             </section>
 
-            <section class="bloque-mecanicas">
-                <h2>LAS REGLAS DE LA TORRE</h2>
-                <div class="grid-mecanicas">
-                    
-                    <article class="tarjeta-mecanica">
+            <section class="mechanics-section">
+                <h2>MECÁNICAS DE SUPERVIVENCIA</h2>
+                <div class="cards-grid">
+                    <div class="card">
                         <h3>1. ESQUIVA LAS TRAMPAS</h3>
-                        <p>La torre está viva y quiere verte caer. Plataformas falsas, pinchos ocultos y engranajes mortales te esperan en cada salto. La memorización y los reflejos rápidos serán tus únicas armas.</p>
-                    </article>
-
-                    <article class="tarjeta-mecanica">
-                        <h3>2. NO DEJES QUE EL TIEMPO TE ALCANCE</h3>
-                        <p>El suelo se desmorona y la tinta sube. No hay tiempo para dudar. Mantén el impulso, encadena saltos perfectos y no mires abajo, o el abismo te tragará para siempre.</p>
-                    </article>
-
-                    <article class="tarjeta-mecanica destaco">
+                        <p>Plataformas falsas, pinchos ocultos y engranajes. La memorización será tu única arma.</p>
+                    </div>
+                    <div class="card">
+                        <h3>2. EL TIEMPO VUELA</h3>
+                        <p>El suelo se desmorona. Mantén el impulso y no mires abajo, o el abismo te tragará.</p>
+                    </div>
+                    <div class="card">
                         <h3>3. LLEGA A LA CIMA</h3>
-                        <p>Muy pocos logran ver qué hay en la cúspide. Supera la frustración, domina las físicas y graba tu nombre en lo más alto de las clasificaciones mundiales. ¿Aceptas el reto?</p>
-                    </article>
-
+                        <p>Supera la frustración, domina las físicas y graba tu nombre en lo más alto.</p>
+                    </div>
                 </div>
             </section>
 
-            <section class="bloque-descarga">
-                <h2>DESCARGA LA V1.0</h2>
-                <a href="#" class="btn-brutal">INICIAR DESCARGA (PC)</a>
+            <section class="download-section">
+                <a href="#" class="btn-download">INICIAR DESCARGA (PC)</a>
+                <p class="version-info">Versión 1.0 - Windows / Mac / Linux</p>
             </section>
 
-            <section class="bloque-contacto">
+            <section class="contact-section">
                 <h2>BUZÓN DE SUGERENCIAS</h2>
-                <p>¿Encontraste un bug o quieres dejar tu opinión? Escríbenos.</p>
+                <p>¿Encontraste un bug o tienes ideas? Transmite tus datos a la central.</p>
                 
-                <form id="miFormulario" action="https://formspree.io/f/xpqonjya" method="POST" class="formulario-tinta">
-                    <input type="text" name="nombre" placeholder="TU ALIAS" required>
-                    <input type="email" name="email" placeholder="TU CORREO" required>
-                    <textarea name="mensaje" rows="4" placeholder="ESCRIBE TU REPORTE AQUÍ..." required></textarea>
-                    <button type="submit" class="btn-enviar">ENVIAR MENSAJE</button>
+                <form id="miFormulario" action="https://formspree.io/f/xpqonjya" method="POST" class="retro-form">
+                    <div class="input-group">
+                        <label for="nombre">ALIAS DEL JUGADOR</label>
+                        <input type="text" id="nombre" name="nombre" placeholder="Introduce tu nombre..." required>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="email">CORREO DE CONTACTO</label>
+                        <input type="email" id="email" name="email" placeholder="correo@ejemplo.com" required>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="mensaje">REPORTE O RESEÑA</label>
+                        <textarea id="mensaje" name="mensaje" rows="6" placeholder="Escribe tu mensaje aquí..." required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn-submit">ENVIAR MENSAJE</button>
                 </form>
             </section>
         </main>
 
         <footer>
-            <p>INK TOWER © 2026. DESARROLLO INDIE.</p>
+            <p>INK TOWER © 2026. INSERTA MONEDA PARA CONTINUAR.</p>
         </footer>
     </div>
 
@@ -76,27 +91,13 @@
         
         form.addEventListener("submit", async function(event) {
             event.preventDefault(); 
-            
             const data = new FormData(form);
             
             try {
                 const response = await fetch(form.action, {
                     method: form.method,
                     body: data,
-                    headers: {
-                        'Accept': 'application/json'
-                    }
+                    headers: { 'Accept': 'application/json' }
                 });
                 
                 if (response.ok) {
-                    form.innerHTML = "<p style='font-size: 2rem; color: #e63946; text-align: center; font-family: Teko, sans-serif; border: 4px dashed #e63946; padding: 2rem;'>ENVIADO, GRACIAS POR TU PETICIÓN.</p>";
-                } else {
-                    alert("Error en el sistema de la torre. Inténtalo de nuevo.");
-                }
-            } catch (error) {
-                alert("Error de conexión con la central.");
-            }
-        });
-    </script>
-</body>
-</html>
