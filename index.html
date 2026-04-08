@@ -3,133 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ink Tower | Descarga Oficial</title>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
+    <title>Ink Tower | El Desafío</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="page-wrapper">
+    <div class="contenedor-principal">
         
-        <header class="main-header">
-            <span class="badge">Indie Game</span>
+        <header class="cabecera">
+            <span class="etiqueta">🎮 Juego Indie</span>
             <h1>INK TOWER</h1>
-            <p class="subtitle">El desafío vertical definitivo. Solo los más rápidos sobreviven.</p>
+            <p class="subtitulo">El desafío vertical. Sube, esquiva y no mires abajo.</p>
         </header>
 
         <main>
-            <section class="content-section">
-                <div class="video-container">
-                    <div class="play-icon">▶</div>
-                    <p>Ver Gameplay Trailer</p>
+            <section class="seccion">
+                <div class="caja-video">
+                    <div class="icono-play">▶</div>
+                    <p>Ver Tráiler</p>
                 </div>
                 
-                <div class="info-text">
+                <div class="texto-info">
                     <h2>Un salto al vacío</h2>
-                    <p>Un error, y vuelves abajo. <strong>Ink Tower</strong> es un juego de parkour indie diseñado para poner a prueba tus reflejos. Gráficos pulidos, físicas implacables y una torre que parece no tener fin.</p>
+                    <p>Un error y vuelves al principio. <strong>Ink Tower</strong> es un juego de parkour indie para poner a prueba tus reflejos. Gráficos bonitos, físicas locas y una torre infinita.</p>
                 </div>
             </section>
 
-            <section class="content-section">
-                <h2 class="section-title">Mecánicas de supervivencia</h2>
-                <div class="cards-grid">
-                    <div class="card">
-                        <div class="card-icon">⚡</div>
+            <section class="seccion centrado">
+                <h2>¿Cómo se juega?</h2>
+                <div class="cuadricula-tarjetas">
+                    <div class="tarjeta">
+                        <div class="icono-tarjeta">⚡</div>
                         <h3>Esquiva trampas</h3>
-                        <p>Plataformas falsas y pinchos ocultos. La memorización y los reflejos son tu única arma.</p>
+                        <p>Plataformas que caen y pinchos. Tendrás que ser rápido.</p>
                     </div>
-                    <div class="card">
-                        <div class="card-icon">⏱️</div>
+                    <div class="tarjeta">
+                        <div class="icono-tarjeta">⏱️</div>
                         <h3>El tiempo vuela</h3>
-                        <p>El suelo se desmorona. Mantén el impulso y no mires abajo, o el abismo te tragará.</p>
+                        <p>El suelo desaparece. Si te paras a pensar, pierdes.</p>
                     </div>
-                    <div class="card">
-                        <div class="card-icon">🏆</div>
+                    <div class="tarjeta">
+                        <div class="icono-tarjeta">🏆</div>
                         <h3>Llega a la cima</h3>
-                        <p>Supera la frustración, domina las físicas y graba tu nombre en las tablas mundiales.</p>
+                        <p>Compite con tus amigos para ver quién sube más alto.</p>
                     </div>
                 </div>
             </section>
 
-            <section class="download-section">
-                <h2>Descarga la versión 1.0</h2>
-                <p>Comienza tu ascenso hoy mismo. Totalmente gratis.</p>
-                <div class="buttons-row">
-                    <a href="#" class="btn-primary">⬇️ Windows</a>
-                    <a href="#" class="btn-primary">🐧 Linux</a>
+            <section class="seccion-descarga">
+                <h2>¡Pruébalo gratis!</h2>
+                <p>Descarga la versión 1.0 y empieza a jugar ahora mismo.</p>
+                <div class="fila-botones">
+                    <a href="#" class="boton-accion">⬇️ Windows</a>
+                    <a href="#" class="boton-accion">🐧 Linux</a>
                 </div>
-                <p class="download-meta">Gratis · Requiere 2GB de RAM</p>
             </section>
 
-            <section class="contact-section">
-                <h2>✉️ <span class="highlight-yellow">Escríbenos</span> <span class="highlight-orange">aquí</span></h2>
-                <p class="contact-subtitle">¿Bugs, sugerencias o simplemente quieres saludar? ¡Adelante!</p>
+            <section class="seccion centrado">
+                <h2>✉️ Escríbenos</h2>
+                <p class="subtitulo-contacto">¿Has encontrado un bug o tienes una idea genial? ¡Cuéntanos!</p>
                 
-                <div class="form-wrapper">
+                <div class="caja-formulario">
                     <form id="miFormulario" action="https://formspree.io/f/xpqonjya" method="POST">
-                        <div class="input-group">
-                            <label for="nombre">TU NOMBRE</label>
-                            <input type="text" id="nombre" name="nombre" placeholder="¿Cómo te llamas?" required>
+                        
+                        <div class="grupo-input">
+                            <label for="nombre">Tu Nombre</label>
+                            <input type="text" id="nombre" name="nombre" placeholder="Ej: Mario..." required>
                         </div>
                         
-                        <div class="input-group">
-                            <label for="email">TU CORREO</label>
-                            <input type="email" id="email" name="email" placeholder="para poder responderte" required>
-                        </div>
-                        
-                        <div class="input-group">
-                            <label for="mensaje">MENSAJE</label>
-                            <textarea id="mensaje" name="mensaje" rows="5" placeholder="Cuéntanos lo que quieras..." required></textarea>
-                        </div>
-                        
-                        <button type="submit" class="btn-submit">🚀 Enviar mensaje</button>
-                    </form>
-                </div>
-            </section>
-        </main>
-
-        <footer class="main-footer">
-            <p>Ink Tower © 2026. Creado con pasión por desarrolladores indie.</p>
-        </footer>
-    </div>
-
-    <script>
-        const form = document.getElementById("miFormulario");
-        
-        form.addEventListener("submit", async function(event) {
-            event.preventDefault(); 
-            const data = new FormData(form);
-            const formWrapper = document.querySelector('.form-wrapper');
-            
-            // Cambiamos el texto del botón mientras envía
-            const submitBtn = form.querySelector('.btn-submit');
-            submitBtn.textContent = "⏳ Enviando...";
-            submitBtn.style.opacity = "0.7";
-            
-            try {
-                const response = await fetch(form.action, {
-                    method: form.method,
-                    body: data,
-                    headers: { 'Accept': 'application/json' }
-                });
-                
-                if (response.ok) {
-                    formWrapper.innerHTML = `
-                        <div class="success-message">
-                            <h3>🚀 ¡Mensaje enviado!</h3>
-                            <p>Gracias por tu reporte. Lo leeremos muy pronto.</p>
-                        </div>
-                    `;
-                } else {
-                    alert("Hubo un problema al enviar. Inténtalo de nuevo.");
-                    submitBtn.textContent = "🚀 Enviar mensaje";
-                    submitBtn.style.opacity = "1";
-                }
-            } catch (error) {
-                alert("Error de conexión. Comprueba tu internet.");
-                submitBtn.textContent = "🚀 Enviar mensaje";
-                submitBtn.style.opacity = "1";
-            }
-        });
-    </script>
-</body>
-</html>
+                        <div class="grupo-input">
+                            <label for="email">Tu Correo</label
