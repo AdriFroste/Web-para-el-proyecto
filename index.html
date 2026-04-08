@@ -3,87 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ink Tower - Descarga Oficial</title>
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+    <title>Ink Tower</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
         
-        <header>
-            <h1>INK TOWER</h1>
-            <p class="subtitle">EL DESAFÍO VERTICAL</p>
-        </header>
+        <section class="download-section">
+            <div class="buttons-row">
+                <a href="#" class="btn-os">⬇️ Windows</a>
+                <a href="#" class="btn-os">🐧 Linux</a>
+            </div>
+            <p class="download-info">Gratis · Windows y Linux</p>
+        </section>
 
-        <main>
-            <section class="info-section">
-                <div class="video-box">
-                    <div class="play-btn">►</div>
-                    <p>GAMEPLAY TRAILER</p>
-                </div>
-                
-                <div class="info-text">
-                    <h2>UN SALTO AL VACÍO</h2>
-                    <p>Un error, y vuelves abajo. Ink Tower es un juego de parkour indie diseñado para poner a prueba tus reflejos. Gráficos retro, físicas implacables y una torre que parece no tener fin.</p>
-                    <ul class="features">
-                        <li>> Precisión extrema requerida</li>
-                        <li>> Atmósfera oscura de 16-bits</li>
-                        <li>> Tablas de clasificación mundiales</li>
-                    </ul>
-                </div>
-            </section>
-
-            <section class="mechanics-section">
-                <h2>MECÁNICAS DE SUPERVIVENCIA</h2>
-                <div class="cards-grid">
-                    <div class="card">
-                        <h3>1. ESQUIVA LAS TRAMPAS</h3>
-                        <p>Plataformas falsas, pinchos ocultos y engranajes. La memorización será tu única arma.</p>
-                    </div>
-                    <div class="card">
-                        <h3>2. EL TIEMPO VUELA</h3>
-                        <p>El suelo se desmorona. Mantén el impulso y no mires abajo, o el abismo te tragará.</p>
-                    </div>
-                    <div class="card">
-                        <h3>3. LLEGA A LA CIMA</h3>
-                        <p>Supera la frustración, domina las físicas y graba tu nombre en lo más alto.</p>
-                    </div>
-                </div>
-            </section>
-
-            <section class="download-section">
-                <a href="#" class="btn-download">INICIAR DESCARGA (PC)</a>
-                <p class="version-info">Versión 1.0 - Windows / Mac / Linux</p>
-            </section>
-
-            <section class="contact-section">
-                <h2>BUZÓN DE SUGERENCIAS</h2>
-                <p>¿Encontraste un bug o tienes ideas? Transmite tus datos a la central.</p>
-                
-                <form id="miFormulario" action="https://formspree.io/f/xpqonjya" method="POST" class="retro-form">
+        <section class="contact-section">
+            <h2 class="contact-title">✉️ <span class="yellow-text">Escríbenos</span> <span class="orange-text">aquí</span></h2>
+            <p class="contact-subtitle">¿Bugs, sugerencias o simplemente quieres saludar? ¡Adelante!</p>
+            
+            <div class="form-container">
+                <form id="miFormulario" action="https://formspree.io/f/xpqonjya" method="POST">
+                    
                     <div class="input-group">
-                        <label for="nombre">ALIAS DEL JUGADOR</label>
-                        <input type="text" id="nombre" name="nombre" placeholder="Introduce tu nombre..." required>
+                        <label for="nombre">TU NOMBRE</label>
+                        <input type="text" id="nombre" name="nombre" placeholder="¿Cómo te llamas?" required>
                     </div>
                     
                     <div class="input-group">
-                        <label for="email">CORREO DE CONTACTO</label>
-                        <input type="email" id="email" name="email" placeholder="correo@ejemplo.com" required>
+                        <label for="email">TU CORREO</label>
+                        <input type="email" id="email" name="email" placeholder="para poder responderte" required>
                     </div>
                     
                     <div class="input-group">
-                        <label for="mensaje">REPORTE O RESEÑA</label>
-                        <textarea id="mensaje" name="mensaje" rows="6" placeholder="Escribe tu mensaje aquí..." required></textarea>
+                        <label for="mensaje">MENSAJE</label>
+                        <textarea id="mensaje" name="mensaje" rows="5" placeholder="Cuéntanos lo que quieras..." required></textarea>
                     </div>
                     
-                    <button type="submit" class="btn-submit">ENVIAR MENSAJE</button>
+                    <button type="submit" class="btn-submit">🚀 Enviar mensaje</button>
                 </form>
-            </section>
-        </main>
+            </div>
+        </section>
 
-        <footer>
-            <p>INK TOWER © 2026. INSERTA MONEDA PARA CONTINUAR.</p>
-        </footer>
     </div>
 
     <script>
@@ -101,3 +62,14 @@
                 });
                 
                 if (response.ok) {
+                    document.querySelector('.form-container').innerHTML = "<div class='success-msg'>🚀 ¡Mensaje enviado con éxito! Gracias por escribirnos.</div>";
+                } else {
+                    alert("Error en el sistema. Inténtalo de nuevo.");
+                }
+            } catch (error) {
+                alert("Error de conexión.");
+            }
+        });
+    </script>
+</body>
+</html>
