@@ -3,59 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ink Tower - Descarga Oficial</title>
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+    <title>Ink Tower | El Desafío Vertical</title>
+    <link href="https://fonts.googleapis.com/css2?family=Teko:wght@500;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="vignette"></div>
+    <div class="contenedor">
+        <header class="cabecera-tinta">
+            <h1>INK TOWER</h1>
+            <p class="subtitulo">Solo los más rápidos sobreviven.</p>
+        </header>
 
-    <header>
-        <h1>INK TOWER</h1>
-        <p class="subtitle">El abismo te devuelve la mirada</p>
-    </header>
-
-    <main>
-        <section class="game-info">
-            <div class="video-placeholder">
-                <p>[ INSERTE GAMEPLAY AQUÍ ]</p>
-            </div>
-            <h2>La escalada final</h2>
-            <p><strong>Ink Tower</strong> no perdona. Una experiencia de parkour vertical de 16-bits donde cada salto cuenta y la tinta lo devora todo. Una atmósfera oscura, controles precisos y un desafío que pondrá a prueba tu paciencia.</p>
-            <ul>
-                <li>♦ Saltos calculados al milímetro</li>
-                <li>♦ Atmósfera opresiva e inmersiva</li>
-                <li>♦ Sin puntos de control. Caer lo es todo.</li>
-            </ul>
-        </section>
-
-        <section class="download-section">
-            <a href="#" class="btn-download">INICIAR DESCARGA</a>
-            <p class="plataformas">PC / Mac / Linux (v1.0)</p>
-        </section>
-
-        <section class="feedback-section">
-            <h2>Transmisión de Datos</h2>
-            <p>¿Encontraste un bug? ¿Tienes sugerencias o quieres dejar tu reseña? Envía tu mensaje a la terminal central.</p>
-            
-            <form action="mailto:alopezr@elpuig.xeill.net" method="post" enctype="text/plain" class="retro-form">
-                <div class="form-group">
-                    <label for="nombre">Alias del Jugador:</label>
-                    <input type="text" id="nombre" name="Nombre" placeholder="Tu nombre..." required>
+        <main>
+            <section class="bloque-info">
+                <div class="marco-video">
+                    <p>[ INSERTE GAMEPLAY AQUÍ ]</p>
                 </div>
                 
-                <div class="form-group">
-                    <label for="mensaje">Reporte / Reseña:</label>
-                    <textarea id="mensaje" name="Mensaje" rows="5" placeholder="Escribe tu mensaje aquí..." required></textarea>
+                <div class="texto-info">
+                    <h2>UN SALTO AL VACÍO</h2>
+                    <p>Un error, y vuelves abajo. <strong>Ink Tower</strong> es un juego de parkour indie diseñado para poner a prueba tus reflejos. Gráficos dibujados a mano, físicas implacables y una torre que parece no tener fin.</p>
+                    
+                    <ul class="lista-caracteristicas">
+                        <li><span>/</span> Precisión extrema requerida</li>
+                        <li><span>/</span> Estilo visual de boceto en tinta</li>
+                        <li><span>/</span> Tablas de clasificación mundiales</li>
+                    </ul>
                 </div>
-                
-                <button type="submit" class="btn-submit">ENVIAR REPORTE</button>
-            </form>
-        </section>
-    </main>
+            </section>
 
-    <footer>
-        <p>&copy; 2026 Ink Tower. Proyecto Indie.</p>
-    </footer>
+            <section class="bloque-descarga">
+                <h2>DESCARGA LA V1.0</h2>
+                <a href="#" class="btn-brutal">INICIAR DESCARGA (PC)</a>
+            </section>
+
+            <section class="bloque-contacto">
+                <h2>BUZÓN DE SUGERENCIAS</h2>
+                <p>¿Encontraste un bug o quieres dejar tu opinión? Escríbenos.</p>
+                
+                <form action="https://formspree.io/f/xpqonjya" method="POST" class="formulario-tinta">
+                    <input type="text" name="nombre" placeholder="TU ALIAS" required>
+                    <input type="email" name="email" placeholder="TU CORREO" required>
+                    <textarea name="mensaje" rows="4" placeholder="ESCRIBE TU REPORTE AQUÍ..." required></textarea>
+                    <button type="submit" class="btn-enviar">ENVIAR MENSAJE</button>
+                </form>
+            </section>
+        </main>
+
+        <footer>
+            <p>INK TOWER © 2026. DESARROLLO INDIE.</p>
+        </footer>
+    </div>
 </body>
 </html>
