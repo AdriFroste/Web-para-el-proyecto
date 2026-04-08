@@ -3,163 +3,145 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ink Tower | El Desafío</title>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
+    <title>Ink Tower | Official Site</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;700&family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="contenedor-principal">
-        
-        <header class="cabecera">
-            <div class="etiqueta">🎮 Juego Indie 3D</div>
-            <h1>INK TOWER</h1>
-            <p class="subtitulo">El desafío vertical. Sube, esquiva y <strong>no mires abajo.</strong></p>
+
+    <div class="background-decor"></div>
+
+    <div class="container">
+        <header class="main-header">
+            <span class="badge">PROYECTO INDIE</span>
+            <h1>INK <span>TOWER</span></h1>
+            <p>Desafía a la gravedad en una torre donde cada salto cuenta.</p>
         </header>
 
-        <section class="seccion centrado">
-            <div class="marco-captura">
-                <img src="imagen-juego.png" alt="Gameplay de Ink Tower" class="imagen-juego">
-            </div>
-            <p class="pie-captura">📸 Un vistazo a la torre infinita</p>
-        </section>
-
-        <section class="seccion">
-            <div class="cuadricula-tarjetas">
-                <div class="tarjeta">
-                    <div class="icono-tarjeta">⚡</div>
-                    <h3>Esquiva trampas</h3>
-                    <p>Plataformas que caen y pinchos. Un paso en falso y vuelves al inicio.</p>
-                </div>
-                <div class="tarjeta">
-                    <div class="icono-tarjeta">⏱️</div>
-                    <h3>El tiempo vuela</h3>
-                    <p>Mantén el impulso. Si te paras a pensar, la gravedad ganará.</p>
-                </div>
-                <div class="tarjeta">
-                    <div class="icono-tarjeta">🏆</div>
-                    <h3>Llega a la cima</h3>
-                    <p>Supera la frustración y demuestra quién tiene los mejores reflejos.</p>
-                </div>
+        <section class="section">
+            <div class="media-card">
+                <img src="imagen-juego.png" alt="Captura de Ink Tower" class="game-img">
+                <div class="img-overlay">📸 Alpha Build v1.0</div>
             </div>
         </section>
 
-        <section class="seccion-controles">
-            <h2>🕹️ Controles Básicos</h2>
-            <p class="subtitulo-controles">Domina el movimiento antes de saltar al vacío</p>
-            
-            <div class="lista-controles">
-                <div class="control-item">
-                    <div class="teclas-grupo">
-                        <kbd class="tecla">W</kbd><kbd class="tecla">A</kbd><kbd class="tecla">S</kbd><kbd class="tecla">D</kbd>
-                    </div>
-                    <div class="info-control">
-                        <strong>Moverse</strong>
-                        <span>Dirección del personaje</span>
-                    </div>
-                </div>
+        <section class="section grid">
+            <div class="card">
+                <div class="card-icon">🧗</div>
+                <h3>Parkour Puro</h3>
+                <p>Mecánicas de salto precisas y fluidas para una experiencia exigente.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">🏗️</div>
+                <h3>Niveles Dinámicos</h3>
+                <p>Plataformas que se mueven y desaparecen bajo tus pies.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">🔥</div>
+                <h3>Sin Checkpoints</h3>
+                <p>Si caes, vuelves a empezar. ¿Tienes la paciencia necesaria?</p>
+            </div>
+        </section>
 
-                <div class="control-item">
-                    <div class="teclas-grupo">
-                        <kbd class="tecla tecla-larga">ESPACIO</kbd>
+        <section class="section controls">
+            <h2>🎮 Cómo Jugar</h2>
+            <div class="controls-wrapper">
+                <div class="control-row">
+                    <div class="key-group">
+                        <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd>
                     </div>
-                    <div class="info-control">
-                        <strong>Saltar</strong>
-                        <span>Superar obstáculos</span>
-                    </div>
+                    <span>Mover personaje</span>
                 </div>
-
-                <div class="control-item">
-                    <div class="teclas-grupo">
-                        <kbd class="tecla tecla-larga">SHIFT</kbd>
-                    </div>
-                    <div class="info-control">
-                        <strong>Correr</strong>
-                        <span>Impulso extra</span>
-                    </div>
+                <div class="control-row">
+                    <div class="key-group"><kbd class="wide">SPACE</kbd></div>
+                    <span>Saltar / Trepar</span>
+                </div>
+                <div class="control-row">
+                    <div class="key-group"><kbd class="wide">SHIFT</kbd></div>
+                    <span>Correr</span>
                 </div>
             </div>
         </section>
 
-        <section class="seccion-descarga">
-            <h2>¡Comienza el ascenso!</h2>
-            <div class="fila-botones">
-                <a href="#" class="boton-accion">⬇️ Descargar Windows</a>
-                <a href="#" class="boton-accion">🐧 Descargar Linux</a>
+        <section class="download-box">
+            <h2>¡Únete al ascenso!</h2>
+            <div class="btn-group">
+                <a href="#" class="btn btn-win">Descargar para Windows</a>
+                <a href="#" class="btn btn-lin">Versión Linux</a>
             </div>
-            <p class="nota-descarga">Versión 1.0 · Totalmente Gratis</p>
         </section>
 
-        <section class="seccion centrado">
-            <h2>✉️ Escríbenos</h2>
-            <p class="subtitulo-contacto">¿Has encontrado un bug o quieres decirnos algo?</p>
-            
-            <div class="caja-formulario">
-                <form id="miFormulario" action="https://formspree.io/f/xpqonjya" method="POST">
-                    <input type="hidden" name="_subject" value="Mensaje desde la web de Ink Tower">
-                    <input type="text" name="_gotcha" style="display:none">
+        <section class="section contact">
+            <div class="contact-header">
+                <h2>✉️ Contacto</h2>
+                <p>¿Algún bug? ¿Sugerencias? Escríbenos directamente.</p>
+            </div>
 
-                    <div class="grupo-input">
-                        <label for="nombre">Tu Nombre</label>
-                        <input type="text" id="nombre" name="nombre" placeholder="¿Cómo te llamas?" required>
-                    </div>
+            <div class="form-container">
+                <form id="inkForm" action="https://formspree.io/f/xpqonjya" method="POST">
+                    <input type="hidden" name="_subject" value="Nuevo mensaje de Ink Tower">
                     
-                    <div class="grupo-input">
-                        <label for="email">Tu Correo</label>
-                        <input type="email" id="email" name="email" placeholder="para poder responderte" required>
+                    <div class="input-group">
+                        <label for="full-name">Nombre</label>
+                        <input type="text" id="full-name" name="name" placeholder="Tu nombre artístico" required>
                     </div>
-                    
-                    <div class="grupo-input">
-                        <label for="mensaje">Mensaje</label>
-                        <textarea id="mensaje" name="mensaje" rows="4" placeholder="Cuéntanos lo que quieras..." required></textarea>
+
+                    <div class="input-group">
+                        <label for="email-addr">Email</label>
+                        <input type="email" id="email-addr" name="email" placeholder="correo@ejemplo.com" required>
                     </div>
-                    
-                    <button type="submit" class="boton-enviar">🚀 Enviar Mensaje</button>
+
+                    <div class="input-group">
+                        <label for="msg">Mensaje</label>
+                        <textarea id="msg" name="message" rows="5" placeholder="Cuéntanos tu experiencia..." required></textarea>
+                    </div>
+
+                    <button type="submit" id="submit-btn" class="btn-submit">Enviar Comentarios</button>
                 </form>
 
-                <div id="mensajeExito" class="mensaje-exito" style="display: none;">
-                    <div class="icono-gigante">🎉</div>
-                    <h3>¡Enviado con éxito!</h3>
-                    <p>Gracias por tu reporte. Te leeremos muy pronto.</p>
+                <div id="success-msg" class="success-alert" style="display: none;">
+                    <div class="icon-check">✅</div>
+                    <h3>¡Recibido!</h3>
+                    <p>Gracias por ayudarnos a mejorar Ink Tower.</p>
+                    <button onclick="location.reload()" class="btn-back">Enviar otro</button>
                 </div>
             </div>
         </section>
 
-        <footer class="pie-pagina">
-            <p>Hecho con 💙 por desarrolladores indie · 2026</p>
+        <footer class="footer">
+            <p>&copy; 2026 Ink Tower Devs. Todos los derechos reservados.</p>
         </footer>
     </div>
 
     <script>
-        const form = document.getElementById("miFormulario");
-        const mensajeExito = document.getElementById("mensajeExito");
-        const boton = form.querySelector('.boton-enviar');
-        
-        form.addEventListener("submit", async function(event) {
-            event.preventDefault(); 
-            const data = new FormData(form);
-            
-            boton.textContent = "⏳ Enviando...";
-            boton.style.opacity = "0.7";
-            
+        const form = document.getElementById('inkForm');
+        const success = document.getElementById('success-msg');
+        const btn = document.getElementById('submit-btn');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            btn.disabled = true;
+            btn.innerText = "Enviando...";
+
+            const formData = new FormData(form);
+
             try {
                 const response = await fetch(form.action, {
-                    method: form.method,
-                    body: data,
+                    method: 'POST',
+                    body: formData,
                     headers: { 'Accept': 'application/json' }
                 });
-                
+
                 if (response.ok) {
-                    form.style.display = "none";
-                    mensajeExito.style.display = "block";
+                    form.style.display = 'none';
+                    success.style.display = 'block';
                 } else {
-                    alert("Error al enviar.");
-                    boton.textContent = "🚀 Enviar Mensaje";
-                    boton.style.opacity = "1";
+                    throw new Error();
                 }
-            } catch (error) {
-                alert("Sin conexión.");
-                boton.textContent = "🚀 Enviar Mensaje";
-                boton.style.opacity = "1";
+            } catch (err) {
+                alert("Hubo un problema. Por favor, revisa tu conexión.");
+                btn.disabled = false;
+                btn.innerText = "Enviar Comentarios";
             }
         });
     </script>
