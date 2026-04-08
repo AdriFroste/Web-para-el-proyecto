@@ -11,57 +11,157 @@
     <div class="contenedor-principal">
         
         <header class="cabecera">
-            <span class="etiqueta">🎮 Juego Indie</span>
+            <div class="etiqueta">🎮 Juego Indie 3D</div>
             <h1>INK TOWER</h1>
-            <p class="subtitulo">El desafío vertical. Sube, esquiva y no mires abajo.</p>
+            <p class="subtitulo">El desafío vertical. Sube, esquiva y <strong>no mires abajo.</strong></p>
         </header>
 
-        <main>
-            <section class="seccion">
-                <div class="caja-video">
-                    <div class="icono-play">▶</div>
-                    <p>Ver Tráiler</p>
+        <section class="seccion centrado">
+            <div class="marco-captura">
+                <img src="imagen-juego.png" alt="Gameplay de Ink Tower" class="imagen-juego">
+            </div>
+            <p class="pie-captura">📸 Un vistazo a la torre infinita</p>
+        </section>
+
+        <section class="seccion">
+            <div class="cuadricula-tarjetas">
+                <div class="tarjeta">
+                    <div class="icono-tarjeta">⚡</div>
+                    <h3>Esquiva trampas</h3>
+                    <p>Plataformas que caen y pinchos. Un paso en falso y vuelves al inicio.</p>
                 </div>
+                <div class="tarjeta">
+                    <div class="icono-tarjeta">⏱️</div>
+                    <h3>El tiempo vuela</h3>
+                    <p>Mantén el impulso. Si te paras a pensar, la gravedad ganará.</p>
+                </div>
+                <div class="tarjeta">
+                    <div class="icono-tarjeta">🏆</div>
+                    <h3>Llega a la cima</h3>
+                    <p>Supera la frustración y demuestra quién tiene los mejores reflejos.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="seccion-controles">
+            <h2>🕹️ Controles Básicos</h2>
+            <p class="subtitulo-controles">Domina el movimiento antes de saltar al vacío</p>
+            
+            <div class="lista-controles">
+                <div class="control-item">
+                    <div class="teclas-grupo">
+                        <kbd class="tecla">W</kbd><kbd class="tecla">A</kbd><kbd class="tecla">S</kbd><kbd class="tecla">D</kbd>
+                    </div>
+                    <div class="info-control">
+                        <strong>Moverse</strong>
+                        <span>Dirección del personaje</span>
+                    </div>
+                </div>
+
+                <div class="control-item">
+                    <div class="teclas-grupo">
+                        <kbd class="tecla tecla-larga">ESPACIO</kbd>
+                    </div>
+                    <div class="info-control">
+                        <strong>Saltar</strong>
+                        <span>Superar obstáculos</span>
+                    </div>
+                </div>
+
+                <div class="control-item">
+                    <div class="teclas-grupo">
+                        <kbd class="tecla tecla-larga">SHIFT</kbd>
+                    </div>
+                    <div class="info-control">
+                        <strong>Correr</strong>
+                        <span>Impulso extra</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="seccion-descarga">
+            <h2>¡Comienza el ascenso!</h2>
+            <div class="fila-botones">
+                <a href="#" class="boton-accion">⬇️ Descargar Windows</a>
+                <a href="#" class="boton-accion">🐧 Descargar Linux</a>
+            </div>
+            <p class="nota-descarga">Versión 1.0 · Totalmente Gratis</p>
+        </section>
+
+        <section class="seccion centrado">
+            <h2>✉️ Escríbenos</h2>
+            <p class="subtitulo-contacto">¿Has encontrado un bug o quieres decirnos algo?</p>
+            
+            <div class="caja-formulario">
+                <form id="miFormulario" action="https://formspree.io/f/xpqonjya" method="POST">
+                    <input type="hidden" name="_subject" value="Mensaje desde la web de Ink Tower">
+                    <input type="text" name="_gotcha" style="display:none">
+
+                    <div class="grupo-input">
+                        <label for="nombre">Tu Nombre</label>
+                        <input type="text" id="nombre" name="nombre" placeholder="¿Cómo te llamas?" required>
+                    </div>
+                    
+                    <div class="grupo-input">
+                        <label for="email">Tu Correo</label>
+                        <input type="email" id="email" name="email" placeholder="para poder responderte" required>
+                    </div>
+                    
+                    <div class="grupo-input">
+                        <label for="mensaje">Mensaje</label>
+                        <textarea id="mensaje" name="mensaje" rows="4" placeholder="Cuéntanos lo que quieras..." required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="boton-enviar">🚀 Enviar Mensaje</button>
+                </form>
+
+                <div id="mensajeExito" class="mensaje-exito" style="display: none;">
+                    <div class="icono-gigante">🎉</div>
+                    <h3>¡Enviado con éxito!</h3>
+                    <p>Gracias por tu reporte. Te leeremos muy pronto.</p>
+                </div>
+            </div>
+        </section>
+
+        <footer class="pie-pagina">
+            <p>Hecho con 💙 por desarrolladores indie · 2026</p>
+        </footer>
+    </div>
+
+    <script>
+        const form = document.getElementById("miFormulario");
+        const mensajeExito = document.getElementById("mensajeExito");
+        const boton = form.querySelector('.boton-enviar');
+        
+        form.addEventListener("submit", async function(event) {
+            event.preventDefault(); 
+            const data = new FormData(form);
+            
+            boton.textContent = "⏳ Enviando...";
+            boton.style.opacity = "0.7";
+            
+            try {
+                const response = await fetch(form.action, {
+                    method: form.method,
+                    body: data,
+                    headers: { 'Accept': 'application/json' }
+                });
                 
-                <div class="texto-info">
-                    <h2>Un salto al vacío</h2>
-                    <p>Un error y vuelves al principio. <strong>Ink Tower</strong> es un juego de parkour indie para poner a prueba tus reflejos. Gráficos bonitos, físicas locas y una torre infinita.</p>
-                </div>
-            </section>
-
-            <section class="seccion centrado">
-                <h2>¿Cómo se juega?</h2>
-                <div class="cuadricula-tarjetas">
-                    <div class="tarjeta">
-                        <div class="icono-tarjeta">⚡</div>
-                        <h3>Esquiva trampas</h3>
-                        <p>Plataformas que caen y pinchos. Tendrás que ser rápido.</p>
-                    </div>
-                    <div class="tarjeta">
-                        <div class="icono-tarjeta">⏱️</div>
-                        <h3>El tiempo vuela</h3>
-                        <p>El suelo desaparece. Si te paras a pensar, pierdes.</p>
-                    </div>
-                    <div class="tarjeta">
-                        <div class="icono-tarjeta">🏆</div>
-                        <h3>Llega a la cima</h3>
-                        <p>Compite con tus amigos para ver quién sube más alto.</p>
-                    </div>
-                </div>
-            </section>
-
-            <section class="seccion-descarga">
-                <h2>¡Pruébalo gratis!</h2>
-                <p>Descarga la versión 1.0 y empieza a jugar ahora mismo.</p>
-                <div class="fila-botones">
-                    <a href="#" class="boton-accion">⬇️ Windows</a>
-                    <a href="#" class="boton-accion">🐧 Linux</a>
-                </div>
-            </section>
-
-            <section class="seccion centrado">
-                <h2>✉️ Escríbenos</h2>
-                <p class="subtitulo-contacto">¿Has encontrado un bug o tienes una idea genial? ¡Cuéntanos!</p>
-                
-                <div class="caja-formulario">
-                    <form id="miFormulario" action="
+                if (response.ok) {
+                    form.style.display = "none";
+                    mensajeExito.style.display = "block";
+                } else {
+                    alert("Error al enviar.");
+                    boton.textContent = "🚀 Enviar Mensaje";
+                    boton.style.opacity = "1";
+                }
+            } catch (error) {
+                alert("Sin conexión.");
+                boton.textContent = "🚀 Enviar Mensaje";
+                boton.style.opacity = "1";
+            }
+        });
+    </script>
+</body>
+</html>
