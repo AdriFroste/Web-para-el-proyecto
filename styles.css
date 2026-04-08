@@ -6,205 +6,208 @@
 }
 
 body {
-    background-color: #030303; /* Negro casi total */
-    color: #c4c4c4; /* Gris muy claro, agradable a la vista, no quema como el blanco puro */
-    font-family: 'VT323', monospace;
-    font-size: 1.5rem;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    overflow-x: hidden;
+    background-color: #f4f4f0;
+    color: #111;
+    font-family: 'Space Mono', monospace;
+    line-height: 1.6;
+    background-image: radial-gradient(#d5d5d5 1px, transparent 1px);
+    background-size: 20px 20px;
 }
 
-/* --- Efecto Viñeta (Oscurece los bordes para dar ambiente) --- */
-.vignette {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: radial-gradient(circle, rgba(0,0,0,0) 40%, rgba(0,0,0,0.85) 100%);
-    pointer-events: none;
-    z-index: 50;
-}
-
-/* --- Encabezado --- */
-header {
-    text-align: center;
-    padding: 4rem 1rem;
-    background: linear-gradient(180deg, #0a0a0f 0%, #030303 100%);
-    border-bottom: 1px solid #1a1a24;
-}
-
-header h1 {
-    font-family: 'Press Start 2P', cursive;
-    color: #ffffff;
-    /* Efecto de brillo de tinta/pantalla monocromo */
-    text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.3), 2px 2px 0px #302b4d;
-    font-size: 3.2rem;
-    margin-bottom: 1rem;
-    letter-spacing: 3px;
-}
-
-.subtitle {
-    font-size: 1.6rem;
-    color: #6c6c86;
-}
-
-/* --- Contenido Principal --- */
-main {
-    flex: 1;
-    padding: 3rem 1rem;
-    max-width: 800px;
+.contenedor {
+    max-width: 900px;
     margin: 0 auto;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 4rem;
-    z-index: 10;
+    padding: 2rem;
 }
 
-/* --- Cajas de Información (Juego y Contacto) --- */
-.game-info, .feedback-section {
-    background-color: #08080a;
-    border: 1px solid #1f1f2e;
-    padding: 2.5rem;
-    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.8), 0 5px 15px rgba(0,0,0,0.5);
+/* --- Tipografía y Cabecera --- */
+h1, h2, h3, .btn-brutal, .btn-enviar {
+    font-family: 'Teko', sans-serif;
+    text-transform: uppercase;
 }
 
-.video-placeholder {
-    background-color: #020202;
-    height: 300px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px dashed #302b4d;
-    margin-bottom: 2.5rem;
-    color: #4a4a5e;
-    font-family: 'Press Start 2P', cursive;
-    font-size: 0.8rem;
+.cabecera-tinta {
+    text-align: center;
+    border: 6px solid #111;
+    padding: 3rem 1rem;
+    background-color: #fff;
+    box-shadow: 10px 10px 0px #111;
+    margin-bottom: 4rem;
+}
+
+.cabecera-tinta h1 {
+    font-size: 6rem;
+    line-height: 1;
+    letter-spacing: 2px;
+    color: #111;
+}
+
+.subtitulo {
+    font-size: 1.2rem;
+    font-weight: bold;
+    background-color: #e63946;
+    color: #fff;
+    display: inline-block;
+    padding: 0.2rem 1rem;
+    margin-top: 1rem;
+    transform: rotate(-2deg);
+}
+
+/* --- Secciones Principales --- */
+section {
+    background-color: #fff;
+    border: 4px solid #111;
+    padding: 2rem;
+    margin-bottom: 3rem;
+    box-shadow: 8px 8px 0px #111;
 }
 
 h2 {
-    font-family: 'Press Start 2P', cursive;
-    font-size: 1.1rem;
+    font-size: 3rem;
+    line-height: 1.1;
     margin-bottom: 1.5rem;
-    color: #e0e0e0;
-    line-height: 1.5;
-    border-bottom: 1px solid #1f1f2e;
+    border-bottom: 4px solid #111;
+    display: inline-block;
     padding-bottom: 0.5rem;
 }
 
-p {
-    margin-bottom: 1.5rem;
-    line-height: 1.6;
+/* --- Bloque de Info (Intro) --- */
+.bloque-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
 }
 
-.game-info ul {
-    list-style: none;
-    margin-top: 1.5rem;
-    color: #a0a0b8;
+.marco-video {
+    width: 100%;
+    height: 350px;
+    background-color: #111;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    border: 4px dashed #e63946;
 }
 
-.game-info li {
-    margin-bottom: 1rem;
-    font-size: 1.4rem;
+/* --- NUEVO: Bloque de Mecánicas --- */
+.bloque-mecanicas {
+    background-color: #f4f4f0; /* Rompe el blanco para destacar */
 }
 
-/* --- Sección de Descarga --- */
-.download-section {
+.grid-mecanicas {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 1rem;
+}
+
+.tarjeta-mecanica {
+    background-color: #fff;
+    border: 4px solid #111;
+    padding: 1.5rem;
+    box-shadow: 5px 5px 0px #111;
+    transition: transform 0.2s;
+}
+
+.tarjeta-mecanica:hover {
+    transform: translateY(-5px);
+}
+
+.tarjeta-mecanica h3 {
+    font-size: 2rem;
+    color: #111;
+    margin-bottom: 0.5rem;
+    line-height: 1.1;
+}
+
+.tarjeta-mecanica p {
+    font-size: 0.95rem;
+}
+
+/* La tercera tarjeta tiene un estilo especial invertido para darle impacto */
+.tarjeta-mecanica.destaco {
+    background-color: #111;
+    color: #fff;
+    box-shadow: 5px 5px 0px #e63946;
+    border-color: #111;
+}
+
+.tarjeta-mecanica.destaco h3 {
+    color: #e63946;
+}
+
+/* --- Botones y Descarga --- */
+.bloque-descarga {
     text-align: center;
+    background-color: #111;
+    color: #fff;
 }
 
-.btn-download {
+.bloque-descarga h2 {
+    color: #fff;
+    border-color: #fff;
+}
+
+.btn-brutal {
     display: inline-block;
-    font-family: 'Press Start 2P', cursive;
-    background-color: #e0e0e0;
-    color: #030303;
-    padding: 1.5rem 2.5rem;
-    text-decoration: none;
-    font-size: 1.1rem;
-    border: 2px solid #ffffff;
-    box-shadow: 4px 4px 0px #302b4d;
-    transition: all 0.2s ease;
-}
-
-.btn-download:hover {
-    background-color: #ffffff;
-    transform: translate(-2px, -2px);
-    box-shadow: 6px 6px 0px #4a4a6a;
-}
-
-.btn-download:active {
-    transform: translate(4px, 4px);
-    box-shadow: 0px 0px 0px #302b4d;
-}
-
-.plataformas {
     margin-top: 1.5rem;
-    color: #4a4a5e;
-    font-size: 1.1rem;
+    padding: 1rem 3rem;
+    font-size: 2.5rem;
+    background-color: #e63946;
+    color: #fff;
+    text-decoration: none;
+    border: 4px solid #fff;
+    transition: transform 0.1s, box-shadow 0.1s;
 }
 
-/* --- Formulario de Contacto --- */
-.retro-form {
+.btn-brutal:hover {
+    transform: translate(-4px, -4px);
+    box-shadow: 8px 8px 0px #fff;
+}
+
+/* --- Formulario --- */
+.formulario-tinta {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 1rem;
+    margin-top: 1.5rem;
 }
 
-.form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-}
-
-label {
-    color: #8888a0;
-    font-size: 1.3rem;
-}
-
-input[type="text"], textarea {
-    background-color: #030303;
-    border: 1px solid #302b4d;
-    color: #c4c4c4;
-    font-family: 'VT323', monospace;
-    font-size: 1.4rem;
+input, textarea {
+    font-family: 'Space Mono', monospace;
+    font-size: 1rem;
     padding: 1rem;
+    border: 4px solid #111;
+    background-color: #f4f4f0;
+    color: #111;
     outline: none;
-    resize: vertical;
-    transition: border-color 0.3s;
 }
 
-input[type="text"]:focus, textarea:focus {
-    border-color: #6c6c86;
-    box-shadow: inset 0 0 5px rgba(255,255,255,0.05);
+input:focus, textarea:focus {
+    background-color: #fff;
+    border-color: #e63946;
 }
 
-.btn-submit {
+.btn-enviar {
     align-self: flex-start;
-    font-family: 'Press Start 2P', cursive;
-    background-color: transparent;
-    color: #e0e0e0;
-    border: 1px solid #e0e0e0;
-    padding: 1rem 1.5rem;
-    font-size: 0.9rem;
+    padding: 0.5rem 2rem;
+    font-size: 2rem;
+    background-color: #111;
+    color: #fff;
+    border: none;
     cursor: pointer;
-    transition: all 0.2s;
+    transition: background-color 0.2s;
 }
 
-.btn-submit:hover {
-    background-color: #e0e0e0;
-    color: #030303;
+.btn-enviar:hover {
+    background-color: #e63946;
 }
 
-/* --- Pie de página --- */
+/* --- Footer --- */
 footer {
     text-align: center;
-    padding: 2rem;
-    border-top: 1px solid #1a1a24;
-    font-size: 1.2rem;
-    color: #333344;
-    background-color: #000;
-    z-index: 10;
+    font-weight: bold;
+    margin-top: 4rem;
+    padding-bottom: 2rem;
 }
