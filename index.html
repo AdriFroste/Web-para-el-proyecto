@@ -23,12 +23,28 @@
                 <div class="texto-info">
                     <h2>UN SALTO AL VACÍO</h2>
                     <p>Un error, y vuelves abajo. <strong>Ink Tower</strong> es un juego de parkour indie diseñado para poner a prueba tus reflejos. Gráficos dibujados a mano, físicas implacables y una torre que parece no tener fin.</p>
+                </div>
+            </section>
+
+            <section class="bloque-mecanicas">
+                <h2>LAS REGLAS DE LA TORRE</h2>
+                <div class="grid-mecanicas">
                     
-                    <ul class="lista-caracteristicas">
-                        <li><span>/</span> Precisión extrema requerida</li>
-                        <li><span>/</span> Estilo visual de boceto en tinta</li>
-                        <li><span>/</span> Tablas de clasificación mundiales</li>
-                    </ul>
+                    <article class="tarjeta-mecanica">
+                        <h3>1. ESQUIVA LAS TRAMPAS</h3>
+                        <p>La torre está viva y quiere verte caer. Plataformas falsas, pinchos ocultos y engranajes mortales te esperan en cada salto. La memorización y los reflejos rápidos serán tus únicas armas.</p>
+                    </article>
+
+                    <article class="tarjeta-mecanica">
+                        <h3>2. NO DEJES QUE EL TIEMPO TE ALCANCE</h3>
+                        <p>El suelo se desmorona y la tinta sube. No hay tiempo para dudar. Mantén el impulso, encadena saltos perfectos y no mires abajo, o el abismo te tragará para siempre.</p>
+                    </article>
+
+                    <article class="tarjeta-mecanica destaco">
+                        <h3>3. LLEGA A LA CIMA</h3>
+                        <p>Muy pocos logran ver qué hay en la cúspide. Supera la frustración, domina las físicas y graba tu nombre en lo más alto de las clasificaciones mundiales. ¿Aceptas el reto?</p>
+                    </article>
+
                 </div>
             </section>
 
@@ -41,7 +57,7 @@
                 <h2>BUZÓN DE SUGERENCIAS</h2>
                 <p>¿Encontraste un bug o quieres dejar tu opinión? Escríbenos.</p>
                 
-                <form action="https://formspree.io/f/xpqonjya" method="POST" class="formulario-tinta">
+                <form id="miFormulario" action="https://formspree.io/f/xpqonjya" method="POST" class="formulario-tinta">
                     <input type="text" name="nombre" placeholder="TU ALIAS" required>
                     <input type="email" name="email" placeholder="TU CORREO" required>
                     <textarea name="mensaje" rows="4" placeholder="ESCRIBE TU REPORTE AQUÍ..." required></textarea>
@@ -54,5 +70,33 @@
             <p>INK TOWER © 2026. DESARROLLO INDIE.</p>
         </footer>
     </div>
+
+    <script>
+        const form = document.getElementById("miFormulario");
+        
+        form.addEventListener("submit", async function(event) {
+            event.preventDefault(); 
+            
+            const data = new FormData(form);
+            
+            try {
+                const response = await fetch(form.action, {
+                    method: form.method,
+                    body: data,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+                
+                if (response.ok) {
+                    form.innerHTML = "<p style='font-size: 2rem; color: #e63946; text-align: center; font-family: Teko, sans-serif; border: 4px dashed #e63946; padding: 2rem;'>ENVIADO, GRACIAS POR TU PETICIÓN.</p>";
+                } else {
+                    alert("Error en el sistema de la torre. Inténtalo de nuevo.");
+                }
+            } catch (error) {
+                alert("Error de conexión con la central.");
+            }
+        });
+    </script>
 </body>
 </html>
