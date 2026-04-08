@@ -4,116 +4,223 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ink Tower | Official Site</title>
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;700&family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@400;600;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-    <div class="background-decor"></div>
+    <!-- Fondo animado con partículas/tinta -->
+    <div class="bg-layer">
+        <div class="ink-blob b1"></div>
+        <div class="ink-blob b2"></div>
+        <div class="ink-blob b3"></div>
+        <canvas id="particles"></canvas>
+    </div>
 
-    <div class="container">
-        <header class="main-header">
-            <span class="badge">PROYECTO INDIE</span>
-            <h1>INK <span>TOWER</span></h1>
-            <p>Desafía a la gravedad en una torre donde cada salto cuenta.</p>
-        </header>
+    <!-- HERO -->
+    <header class="hero">
+        <div class="hero-inner">
+            <span class="badge">PROYECTO INDIE · Por Adrián López y Nathan Ruano</span>
+            <h1 class="logo">
+                <span class="logo-ink">INK</span>
+                <span class="logo-tower">TOWER</span>
+            </h1>
+            <p class="tagline">Desafía a la gravedad en una torre donde cada salto cuenta.</p>
+            <div class="hero-cta">
+                <a href="#download" class="btn-primary">Descargar gratis</a>
+                <a href="#features" class="btn-ghost">Ver más ↓</a>
+            </div>
+        </div>
+        <div class="hero-scroll-hint">
+            <div class="scroll-line"></div>
+        </div>
+    </header>
 
-        <section class="section">
+    <main class="container">
+
+        <!-- SCREENSHOT -->
+        <section class="section" id="screenshot">
             <div class="media-card">
-                <img src="imagen-juego.png" alt="Captura de Ink Tower" class="game-img">
-                <div class="img-overlay">📸 Alpha Build v1.0</div>
+                <div class="media-inner">
+                    <img src="imagen-juego.png" alt="Captura de Ink Tower" class="game-img">
+                    <div class="media-badge">Alpha Build v1.0</div>
+                </div>
             </div>
         </section>
 
-        <section class="section grid">
-            <div class="card">
-                <div class="card-icon">🧗</div>
-                <h3>Parkour Puro</h3>
-                <p>Mecánicas de salto precisas y fluidas para una experiencia exigente.</p>
-            </div>
-            <div class="card">
-                <div class="card-icon">🏗️</div>
-                <h3>Niveles Dinámicos</h3>
-                <p>Plataformas que se mueven y desaparecen bajo tus pies.</p>
-            </div>
-            <div class="card">
-                <div class="card-icon">🔥</div>
-                <h3>Sin Checkpoints</h3>
-                <p>Si caes, vuelves a empezar. ¿Tienes la paciencia necesaria?</p>
+        <!-- FEATURES -->
+        <section class="section" id="features">
+            <div class="section-label">¿Por qué Ink Tower?</div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-num">01</div>
+                    <div class="feature-icon">🧗</div>
+                    <h3>Parkour Puro</h3>
+                    <p>Mecánicas de salto precisas y fluidas para una experiencia exigente.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-num">02</div>
+                    <div class="feature-icon">🏗️</div>
+                    <h3>Niveles Dinámicos</h3>
+                    <p>LLega rapido antes de que se acabe el tiempo.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-num">03</div>
+                    <div class="feature-icon">🔥</div>
+                    <h3>Sin Checkpoints</h3>
+                    <p>Si caes, vuelves a empezar. ¿Tienes la paciencia necesaria?</p>
+                </div>
             </div>
         </section>
 
-        <section class="section controls">
-            <h2>🎮 Cómo Jugar</h2>
-            <div class="controls-wrapper">
-                <div class="control-row">
-                    <div class="key-group">
-                        <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd>
+        <!-- CONTROLES -->
+        <section class="section" id="controls">
+            <div class="section-label">Cómo jugar</div>
+            <div class="controls-card">
+                <div class="controls-title">
+                    <span class="ctrl-icon">🎮</span> Controles
+                </div>
+                <div class="controls-list">
+                    <div class="ctrl-row">
+                        <div class="keys">
+                            <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd>
+                        </div>
+                        <span class="ctrl-desc">Mover personaje</span>
                     </div>
-                    <span>Mover personaje</span>
-                </div>
-                <div class="control-row">
-                    <div class="key-group"><kbd class="wide">SPACE</kbd></div>
-                    <span>Saltar / Trepar</span>
-                </div>
-                <div class="control-row">
-                    <div class="key-group"><kbd class="wide">SHIFT</kbd></div>
-                    <span>Correr</span>
+                    <div class="ctrl-row">
+                        <div class="keys"><kbd class="wide">ESPACIO</kbd></div>
+                        <span class="ctrl-desc">Saltar / Trepar</span>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section class="download-box">
-            <h2>¡Únete al ascenso!</h2>
-            <div class="btn-group">
-                <a href="#" class="btn btn-win">Descargar para Windows</a>
-                <a href="#" class="btn btn-lin">Versión Linux</a>
+        <!-- DESCARGA -->
+        <section class="download-section" id="download">
+            <div class="download-inner">
+                <div class="download-text">
+                    <div class="section-label light">Descarga</div>
+                    <h2>¡Únete al ascenso!</h2>
+                    <p>Gratis. Sin instalación. Sólo sube.</p>
+                </div>
+                <div class="btn-group">
+                    <a href="#" class="dl-btn win">
+                        <span class="dl-os">🪟 Windows</span>
+                        <span class="dl-sub">Descargar .exe</span>
+                    </a>
+                    <a href="#" class="dl-btn lin">
+                        <span class="dl-os">🐧 Linux</span>
+                        <span class="dl-sub">Descargar .tar.gz</span>
+                    </a>
+                </div>
             </div>
         </section>
 
-        <section class="section contact">
-            <div class="contact-header">
-                <h2>✉️ Contacto</h2>
-                <p>¿Algún bug? ¿Sugerencias? Escríbenos directamente.</p>
+        <!-- CONTACTO -->
+        <section class="section contact-section" id="contact">
+            <div class="section-label">Contacto</div>
+            <div class="contact-top">
+                <h2>¿Bugs? ¿Sugerencias?</h2>
+                <p>Escríbenos directamente. Leemos todo.</p>
             </div>
 
-            <div class="form-container">
+            <div class="form-card">
                 <form id="inkForm" action="https://formspree.io/f/xpqonjya" method="POST">
                     <input type="hidden" name="_subject" value="Nuevo mensaje de Ink Tower">
-                    
-                    <div class="input-group">
-                        <label for="full-name">Nombre</label>
-                        <input type="text" id="full-name" name="name" placeholder="Tu nombre artístico" required>
+
+                    <div class="field-row">
+                        <div class="field">
+                            <label for="full-name">Nombre</label>
+                            <input type="text" id="full-name" name="name" placeholder="Tu nombre artístico" required>
+                        </div>
+                        <div class="field">
+                            <label for="email-addr">Email</label>
+                            <input type="email" id="email-addr" name="email" placeholder="correo@ejemplo.com" required>
+                        </div>
                     </div>
 
-                    <div class="input-group">
-                        <label for="email-addr">Email</label>
-                        <input type="email" id="email-addr" name="email" placeholder="correo@ejemplo.com" required>
-                    </div>
-
-                    <div class="input-group">
+                    <div class="field">
                         <label for="msg">Mensaje</label>
                         <textarea id="msg" name="message" rows="5" placeholder="Cuéntanos tu experiencia..." required></textarea>
                     </div>
 
-                    <button type="submit" id="submit-btn" class="btn-submit">Enviar Comentarios</button>
+                    <button type="submit" id="submit-btn" class="submit-btn">Enviar comentarios →</button>
                 </form>
 
-                <div id="success-msg" class="success-alert" style="display: none;">
-                    <div class="icon-check">✅</div>
+                <div id="success-msg" class="success-msg" style="display:none">
+                    <div class="success-icon">✅</div>
                     <h3>¡Recibido!</h3>
                     <p>Gracias por ayudarnos a mejorar Ink Tower.</p>
-                    <button onclick="location.reload()" class="btn-back">Enviar otro</button>
+                    <button onclick="location.reload()" class="btn-back">Enviar otro mensaje</button>
                 </div>
             </div>
         </section>
 
-        <footer class="footer">
-            <p>&copy; 2026 Ink Tower Devs. Todos los derechos reservados.</p>
-        </footer>
-    </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <span class="footer-logo">INK TOWER</span>
+            <span class="footer-copy">© 2026 Ink Tower Devs · Todos los derechos reservados.</span>
+        </div>
+    </footer>
 
     <script>
+        // Partículas de tinta
+        const canvas = document.getElementById('particles');
+        const ctx = canvas.getContext('2d');
+        let W, H, particles = [];
+
+        function resize() {
+            W = canvas.width = window.innerWidth;
+            H = canvas.height = window.innerHeight;
+        }
+        resize();
+        window.addEventListener('resize', resize);
+
+        function randomBetween(a, b) { return a + Math.random() * (b - a); }
+
+        for (let i = 0; i < 38; i++) {
+            particles.push({
+                x: randomBetween(0, window.innerWidth),
+                y: randomBetween(0, window.innerHeight),
+                r: randomBetween(1.5, 4),
+                dx: randomBetween(-0.3, 0.3),
+                dy: randomBetween(-0.6, -0.15),
+                alpha: randomBetween(0.15, 0.45),
+            });
+        }
+
+        function drawParticles() {
+            ctx.clearRect(0, 0, W, H);
+            particles.forEach(p => {
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(99,179,237,${p.alpha})`;
+                ctx.fill();
+                p.x += p.dx;
+                p.y += p.dy;
+                if (p.y < -10) { p.y = H + 10; p.x = randomBetween(0, W); }
+                if (p.x < -10) p.x = W + 10;
+                if (p.x > W + 10) p.x = -10;
+            });
+            requestAnimationFrame(drawParticles);
+        }
+        drawParticles();
+
+        // Scroll reveal
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) e.target.classList.add('visible');
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.section, .download-section, .contact-section').forEach(el => {
+            el.classList.add('reveal');
+            observer.observe(el);
+        });
+
+        // Formulario
         const form = document.getElementById('inkForm');
         const success = document.getElementById('success-msg');
         const btn = document.getElementById('submit-btn');
@@ -121,27 +228,21 @@
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
             btn.disabled = true;
-            btn.innerText = "Enviando...";
-
-            const formData = new FormData(form);
-
+            btn.textContent = "Enviando...";
             try {
-                const response = await fetch(form.action, {
+                const res = await fetch(form.action, {
                     method: 'POST',
-                    body: formData,
+                    body: new FormData(form),
                     headers: { 'Accept': 'application/json' }
                 });
-
-                if (response.ok) {
+                if (res.ok) {
                     form.style.display = 'none';
                     success.style.display = 'block';
-                } else {
-                    throw new Error();
-                }
-            } catch (err) {
-                alert("Hubo un problema. Por favor, revisa tu conexión.");
+                } else throw new Error();
+            } catch {
+                alert("Hubo un problema. Revisa tu conexión.");
                 btn.disabled = false;
-                btn.innerText = "Enviar Comentarios";
+                btn.textContent = "Enviar comentarios →";
             }
         });
     </script>
