@@ -3,48 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ink Tower</title>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
+    <title>Ink Tower | Descarga Oficial</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
+    <div class="page-wrapper">
         
-        <section class="download-section">
-            <div class="buttons-row">
-                <a href="#" class="btn-os">⬇️ Windows</a>
-                <a href="#" class="btn-os">🐧 Linux</a>
-            </div>
-            <p class="download-info">Gratis · Windows y Linux</p>
-        </section>
+        <header class="main-header">
+            <span class="badge">Indie Game</span>
+            <h1>INK TOWER</h1>
+            <p class="subtitle">El desafío vertical definitivo. Solo los más rápidos sobreviven.</p>
+        </header>
 
-        <section class="contact-section">
-            <h2 class="contact-title">✉️ <span class="yellow-text">Escríbenos</span> <span class="orange-text">aquí</span></h2>
-            <p class="contact-subtitle">¿Bugs, sugerencias o simplemente quieres saludar? ¡Adelante!</p>
-            
-            <div class="form-container">
-                <form id="miFormulario" action="https://formspree.io/f/xpqonjya" method="POST">
-                    
-                    <div class="input-group">
-                        <label for="nombre">TU NOMBRE</label>
-                        <input type="text" id="nombre" name="nombre" placeholder="¿Cómo te llamas?" required>
-                    </div>
-                    
-                    <div class="input-group">
-                        <label for="email">TU CORREO</label>
-                        <input type="email" id="email" name="email" placeholder="para poder responderte" required>
-                    </div>
-                    
-                    <div class="input-group">
-                        <label for="mensaje">MENSAJE</label>
-                        <textarea id="mensaje" name="mensaje" rows="5" placeholder="Cuéntanos lo que quieras..." required></textarea>
-                    </div>
-                    
-                    <button type="submit" class="btn-submit">🚀 Enviar mensaje</button>
-                </form>
-            </div>
-        </section>
+        <main>
+            <section class="content-section">
+                <div class="video-container">
+                    <div class="play-icon">▶</div>
+                    <p>Ver Gameplay Trailer</p>
+                </div>
+                
+                <div class="info-text">
+                    <h2>Un salto al vacío</h2>
+                    <p>Un error, y vuelves abajo. <strong>Ink Tower</strong> es un juego de parkour indie diseñado para poner a prueba tus reflejos. Gráficos pulidos, físicas implacables y una torre que parece no tener fin.</p>
+                </div>
+            </section>
 
+            <section class="content-section">
+                <h2 class="section-title">Mecánicas de supervivencia</h2>
+                <div class="cards-grid">
+                    <div class="card">
+                        <div class="card-icon">⚡</div>
+                        <h3>Esquiva trampas</h3>
+                        <p>Plataformas falsas y pinchos ocultos. La memorización y los reflejos son tu única arma.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">⏱️</div>
+                        <h3>El tiempo vuela</h3>
+                        <p>El suelo se desmorona. Mantén el impulso y no mires abajo, o el abismo te tragará.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">🏆</div>
+                        <h3>Llega a la cima</h3>
+                        <p>Supera la frustración, domina las físicas y graba tu nombre en las tablas mundiales.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="download-section">
+                <h2>Descarga la versión 1.0</h2>
+                <p>Comienza tu ascenso hoy mismo. Totalmente gratis.</p>
+                <div class="buttons-row">
+                    <a href="#" class="btn-primary">⬇️ Windows</a>
+                    <a href="#" class="btn-primary">🐧 Linux</a>
+                </div>
+                <p class="download-meta">Gratis · Requiere 2GB de RAM</p>
+            </section>
+
+            <section class="contact-section">
+                <h2>✉️ <span class="highlight-yellow">Escríbenos</span> <span class="highlight-orange">aquí</span></h2>
+                <p class="contact-subtitle">¿Bugs, sugerencias o simplemente quieres saludar? ¡Adelante!</p>
+                
+                <div class="form-wrapper">
+                    <form id="miFormulario" action="https://formspree.io/f/xpqonjya" method="POST">
+                        <div class="input-group">
+                            <label for="nombre">TU NOMBRE</label>
+                            <input type="text" id="nombre" name="nombre" placeholder="¿Cómo te llamas?" required>
+                        </div>
+                        
+                        <div class="input-group">
+                            <label for="email">TU CORREO</label>
+                            <input type="email" id="email" name="email" placeholder="para poder responderte" required>
+                        </div>
+                        
+                        <div class="input-group">
+                            <label for="mensaje">MENSAJE</label>
+                            <textarea id="mensaje" name="mensaje" rows="5" placeholder="Cuéntanos lo que quieras..." required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn-submit">🚀 Enviar mensaje</button>
+                    </form>
+                </div>
+            </section>
+        </main>
+
+        <footer class="main-footer">
+            <p>Ink Tower © 2026. Creado con pasión por desarrolladores indie.</p>
+        </footer>
     </div>
 
     <script>
@@ -53,6 +98,12 @@
         form.addEventListener("submit", async function(event) {
             event.preventDefault(); 
             const data = new FormData(form);
+            const formWrapper = document.querySelector('.form-wrapper');
+            
+            // Cambiamos el texto del botón mientras envía
+            const submitBtn = form.querySelector('.btn-submit');
+            submitBtn.textContent = "⏳ Enviando...";
+            submitBtn.style.opacity = "0.7";
             
             try {
                 const response = await fetch(form.action, {
@@ -62,12 +113,21 @@
                 });
                 
                 if (response.ok) {
-                    document.querySelector('.form-container').innerHTML = "<div class='success-msg'>🚀 ¡Mensaje enviado con éxito! Gracias por escribirnos.</div>";
+                    formWrapper.innerHTML = `
+                        <div class="success-message">
+                            <h3>🚀 ¡Mensaje enviado!</h3>
+                            <p>Gracias por tu reporte. Lo leeremos muy pronto.</p>
+                        </div>
+                    `;
                 } else {
-                    alert("Error en el sistema. Inténtalo de nuevo.");
+                    alert("Hubo un problema al enviar. Inténtalo de nuevo.");
+                    submitBtn.textContent = "🚀 Enviar mensaje";
+                    submitBtn.style.opacity = "1";
                 }
             } catch (error) {
-                alert("Error de conexión.");
+                alert("Error de conexión. Comprueba tu internet.");
+                submitBtn.textContent = "🚀 Enviar mensaje";
+                submitBtn.style.opacity = "1";
             }
         });
     </script>
