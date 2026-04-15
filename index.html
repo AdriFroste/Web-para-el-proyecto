@@ -4,12 +4,539 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ink Tower | Official Site</title>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@400;600;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        /* =============================================
+           INK TOWER — Medieval Blue/Black Edition
+           ============================================= */
+
+        :root {
+            --bg:           #04060f;
+            --surface:      #080d1c;
+            --surface2:     #0d1428;
+            --surface3:     #111a33;
+            --border:       rgba(60, 100, 200, 0.15);
+            --border-hover: rgba(80, 140, 255, 0.45);
+            --accent:       #4a7fe8;
+            --accent-bright:#6b9fff;
+            --accent-gold:  #c8a84b;
+            --text:         #dce6f5;
+            --text-dim:     #7a90b8;
+            --text-muted:   #3a4f70;
+            --radius-sm:    8px;
+            --radius-md:    14px;
+            --radius-lg:    22px;
+            --font-title:   'Cinzel', serif;
+            --font-body:    'Crimson Text', serif;
+        }
+
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--font-body);
+            font-size: 17px;
+            overflow-x: hidden;
+            line-height: 1.7;
+        }
+
+        /* ── FONDO MEDIEVAL ── */
+        .bg-layer {
+            position: fixed; inset: 0; z-index: 0;
+            pointer-events: none; overflow: hidden;
+        }
+
+        /* Patrón de piedra sutil */
+        .bg-layer::before {
+            content: '';
+            position: absolute; inset: 0;
+            background-image:
+                repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(60,100,200,0.015) 40px, rgba(60,100,200,0.015) 41px),
+                repeating-linear-gradient(90deg, transparent, transparent 40px, rgba(60,100,200,0.015) 40px, rgba(60,100,200,0.015) 41px);
+        }
+
+        /* Viñeta oscura en bordes */
+        .bg-layer::after {
+            content: '';
+            position: absolute; inset: 0;
+            background: radial-gradient(ellipse at 50% 50%, transparent 40%, rgba(4,6,15,0.7) 100%);
+        }
+
+        #particles { position: absolute; inset: 0; opacity: 0.5; }
+
+        .ink-blob { position: absolute; border-radius: 50%; filter: blur(100px); opacity: 0.08; }
+        .b1 { width: 700px; height: 700px; background: #1a3a8f; top: -200px; left: -200px; animation: drift 20s ease-in-out infinite alternate; }
+        .b2 { width: 600px; height: 600px; background: #0f2260; bottom: 0; right: -150px; animation: drift 26s ease-in-out infinite alternate-reverse; }
+        .b3 { width: 450px; height: 450px; background: #0a1a50; top: 40%; left: 35%; animation: drift 30s ease-in-out infinite alternate; }
+
+        @keyframes drift {
+            from { transform: translate(0,0) scale(1); }
+            to   { transform: translate(50px, 40px) scale(1.1); }
+        }
+
+        /* ── HERO ── */
+        .hero {
+            position: relative; z-index: 5;
+            min-height: 100vh;
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            text-align: center; padding: 3rem 1.5rem 6rem;
+        }
+
+        /* Arco gótico decorativo detrás del logo */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -58%);
+            width: min(600px, 90vw); height: min(700px, 90vh);
+            background: radial-gradient(ellipse at 50% 40%, rgba(74,127,232,0.06) 0%, transparent 65%);
+            border: 1px solid rgba(74,127,232,0.06);
+            border-radius: 50% 50% 40% 40%;
+            pointer-events: none;
+        }
+
+        .hero-inner { max-width: 750px; position: relative; }
+
+        /* Separadores ornamentales */
+        .ornament {
+            display: flex; align-items: center; justify-content: center;
+            gap: 12px; margin-bottom: 1.75rem;
+            animation: fadeUp 0.8s ease both;
+        }
+        .ornament::before, .ornament::after {
+            content: '';
+            width: 60px; height: 1px;
+            background: linear-gradient(to right, transparent, var(--accent-gold));
+        }
+        .ornament::after { background: linear-gradient(to left, transparent, var(--accent-gold)); }
+        .ornament-diamond {
+            width: 6px; height: 6px;
+            background: var(--accent-gold);
+            transform: rotate(45deg);
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(74,127,232,0.08);
+            border: 1px solid rgba(74,127,232,0.2);
+            color: var(--text-dim);
+            padding: 5px 18px; border-radius: 4px;
+            font-family: var(--font-title);
+            font-size: 0.62rem; font-weight: 400;
+            letter-spacing: 0.18em; text-transform: uppercase;
+            margin-bottom: 2rem;
+            animation: fadeUp 0.8s ease both;
+        }
+
+        .logo {
+            font-family: var(--font-title);
+            font-size: clamp(5rem, 17vw, 11rem);
+            line-height: 0.88; letter-spacing: 0.06em;
+            margin-bottom: 1.5rem;
+            animation: fadeUp 0.9s 0.1s ease both;
+        }
+        .logo-ink {
+            display: block; color: var(--text);
+            text-shadow: 0 0 60px rgba(74,127,232,0.3), 0 0 120px rgba(74,127,232,0.1);
+        }
+        .logo-tower {
+            display: block; color: transparent;
+            -webkit-text-stroke: 2px var(--accent);
+            filter: drop-shadow(0 0 20px rgba(74,127,232,0.4));
+        }
+
+        /* Línea ornamental bajo el logo */
+        .logo-rule {
+            display: flex; align-items: center; justify-content: center;
+            gap: 8px; margin: 0 auto 1.5rem;
+            animation: fadeUp 0.9s 0.15s ease both;
+        }
+        .logo-rule::before, .logo-rule::after {
+            content: ''; flex: 0 0 80px; height: 1px;
+            background: linear-gradient(to right, transparent, rgba(74,127,232,0.5));
+        }
+        .logo-rule::after { background: linear-gradient(to left, transparent, rgba(74,127,232,0.5)); }
+        .logo-rule-center {
+            width: 8px; height: 8px; border: 1px solid var(--accent);
+            transform: rotate(45deg); opacity: 0.7;
+        }
+
+        .tagline {
+            font-family: var(--font-body);
+            font-size: clamp(1rem, 2.5vw, 1.3rem);
+            font-style: italic;
+            color: var(--text-dim);
+            margin-bottom: 2.5rem;
+            animation: fadeUp 1s 0.2s ease both;
+        }
+
+        .hero-cta {
+            display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+            animation: fadeUp 1s 0.35s ease both;
+        }
+
+        .btn-primary {
+            display: inline-block; text-decoration: none;
+            padding: 0.9rem 2.5rem;
+            background: linear-gradient(135deg, #1a3a8f, #2a52c0);
+            color: var(--text);
+            border: 1px solid rgba(74,127,232,0.5);
+            border-radius: 4px;
+            font-family: var(--font-title); font-weight: 700;
+            font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase;
+            box-shadow: 0 0 30px rgba(74,127,232,0.2), inset 0 1px 0 rgba(255,255,255,0.06);
+            transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+        }
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            border-color: var(--accent-bright);
+            box-shadow: 0 0 50px rgba(74,127,232,0.4), inset 0 1px 0 rgba(255,255,255,0.1);
+        }
+
+        .btn-ghost {
+            display: inline-block; text-decoration: none;
+            padding: 0.9rem 2.5rem;
+            border: 1px solid rgba(74,127,232,0.25);
+            color: var(--text-dim);
+            border-radius: 4px;
+            font-family: var(--font-title); font-weight: 400;
+            font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase;
+            transition: background 0.2s, border-color 0.2s, color 0.2s;
+        }
+        .btn-ghost:hover {
+            background: rgba(74,127,232,0.07);
+            border-color: rgba(74,127,232,0.4);
+            color: var(--text);
+        }
+
+        .hero-scroll-hint { position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%); }
+        .scroll-line {
+            width: 1px; height: 60px;
+            background: linear-gradient(to bottom, var(--accent), transparent);
+            margin: 0 auto; animation: scrollPulse 2s ease-in-out infinite;
+        }
+        @keyframes scrollPulse { 0%,100% { opacity: 0.2; } 50% { opacity: 0.8; } }
+
+        /* ── LAYOUT ── */
+        .container { max-width: 960px; margin: 0 auto; padding: 0 1.5rem 4rem; position: relative; z-index: 5; }
+        .section { margin-bottom: 6rem; }
+
+        .section-label {
+            font-family: var(--font-title);
+            font-size: 0.65rem; font-weight: 400;
+            letter-spacing: 0.22em; text-transform: uppercase;
+            color: var(--accent-gold);
+            margin-bottom: 1.5rem;
+            display: flex; align-items: center; gap: 12px;
+        }
+        .section-label::after {
+            content: ''; flex: 1; height: 1px;
+            background: linear-gradient(to right, rgba(200,168,75,0.3), transparent);
+            max-width: 140px;
+        }
+
+        .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+        .reveal.visible { opacity: 1; transform: none; }
+
+        /* ── SCREENSHOT ── */
+        .media-card {
+            border-radius: var(--radius-lg); padding: 10px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            box-shadow: 0 0 60px rgba(74,127,232,0.05);
+            position: relative;
+        }
+        /* Esquinas ornamentales */
+        .media-card::before, .media-card::after {
+            content: '';
+            position: absolute; width: 20px; height: 20px;
+            border-color: var(--accent-gold); border-style: solid; opacity: 0.5;
+        }
+        .media-card::before { top: 4px; left: 4px; border-width: 1px 0 0 1px; }
+        .media-card::after  { bottom: 4px; right: 4px; border-width: 0 1px 1px 0; }
+
+        .media-inner { position: relative; border-radius: var(--radius-md); overflow: hidden; }
+        .game-img { width: 100%; display: block; border-radius: var(--radius-md); filter: saturate(0.85) brightness(0.9); }
+        .media-badge {
+            position: absolute; bottom: 14px; right: 14px;
+            background: rgba(4,6,15,0.85);
+            border: 1px solid rgba(74,127,232,0.3);
+            color: var(--accent-bright);
+            font-family: var(--font-title); font-size: 0.62rem;
+            font-weight: 400; letter-spacing: 0.1em;
+            padding: 5px 14px; border-radius: 3px;
+            backdrop-filter: blur(8px);
+        }
+        .media-placeholder {
+            aspect-ratio: 16/9; background: var(--surface2);
+            display: flex; align-items: center; justify-content: center;
+            font-family: var(--font-title); font-size: 2.5rem; color: var(--text-muted);
+            letter-spacing: 0.15em;
+        }
+
+        /* ── FEATURES ── */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1px; background: var(--border);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md); overflow: hidden;
+        }
+
+        .feature-card {
+            background: var(--surface); padding: 2.25rem 1.75rem;
+            position: relative; overflow: hidden;
+            transition: background 0.3s;
+        }
+        .feature-card::before {
+            content: '';
+            position: absolute; inset: 0;
+            background: radial-gradient(ellipse at top left, rgba(74,127,232,0.05), transparent 60%);
+            pointer-events: none;
+        }
+        /* Línea superior al hover */
+        .feature-card::after {
+            content: '';
+            position: absolute; top: 0; left: 0; right: 0; height: 1px;
+            background: linear-gradient(to right, transparent, var(--accent-gold), transparent);
+            transform: scaleX(0); transform-origin: center; transition: transform 0.4s ease;
+        }
+        .feature-card:hover { background: var(--surface2); }
+        .feature-card:hover::after { transform: scaleX(1); }
+
+        .feature-num {
+            font-family: var(--font-title); font-size: 3rem;
+            color: rgba(74,127,232,0.12); line-height: 1; margin-bottom: 0.75rem;
+        }
+        .feature-icon { font-size: 1.8rem; margin-bottom: 0.75rem; }
+        .feature-card h3 {
+            font-family: var(--font-title); font-size: 1.1rem;
+            letter-spacing: 0.08em; margin-bottom: 0.6rem; color: var(--text);
+        }
+        .feature-card p { color: var(--text-dim); font-size: 0.95rem; line-height: 1.6; }
+
+        /* ── CONTROLES ── */
+        .controls-card {
+            background: var(--surface); border: 1px solid var(--border);
+            border-radius: var(--radius-md); padding: 2rem;
+            max-width: 520px; position: relative;
+        }
+        .controls-card::before, .controls-card::after {
+            content: ''; position: absolute;
+            width: 16px; height: 16px; border-color: var(--accent-gold);
+            border-style: solid; opacity: 0.4;
+        }
+        .controls-card::before { top: 8px; left: 8px; border-width: 1px 0 0 1px; }
+        .controls-card::after  { bottom: 8px; right: 8px; border-width: 0 1px 1px 0; }
+
+        .controls-title {
+            font-family: var(--font-title); font-size: 1.1rem;
+            letter-spacing: 0.1em; color: var(--text);
+            margin-bottom: 1.5rem; padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border);
+            display: flex; align-items: center; gap: 8px;
+        }
+
+        .ctrl-row {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 0.9rem 0; border-bottom: 1px solid var(--border);
+        }
+        .ctrl-row:last-child { border: none; }
+        .keys { display: flex; gap: 5px; align-items: center; }
+
+        kbd {
+            display: inline-flex; align-items: center; justify-content: center;
+            background: var(--surface2); color: var(--text);
+            padding: 6px 12px; border-radius: 5px;
+            font-family: var(--font-title); font-weight: 400;
+            font-size: 0.72rem; letter-spacing: 0.05em;
+            border: 1px solid rgba(74,127,232,0.2);
+            border-bottom: 3px solid rgba(0,0,0,0.6);
+            min-width: 36px; transition: transform 0.1s;
+        }
+        kbd:active { transform: translateY(2px); border-bottom-width: 1px; }
+        .wide { padding: 6px 22px; min-width: auto; }
+        .ctrl-desc { color: var(--text-dim); font-size: 0.95rem; font-style: italic; }
+
+        /* ── DESCARGA ── */
+        .download-section {
+            position: relative; z-index: 5;
+            margin: 0 0 6rem; padding: 5rem 3rem;
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            overflow: hidden;
+        }
+        .download-section::before {
+            content: '';
+            position: absolute; inset: 0;
+            background:
+                radial-gradient(ellipse at 20% 50%, rgba(20,50,150,0.2), transparent 55%),
+                radial-gradient(ellipse at 80% 50%, rgba(10,25,80,0.15), transparent 55%);
+            pointer-events: none;
+        }
+        /* Texto fantasma medieval */
+        .download-section::after {
+            content: 'ASCEND';
+            position: absolute; right: -20px; top: 50%; transform: translateY(-50%);
+            font-family: var(--font-title);
+            font-size: 16vw; color: rgba(74,127,232,0.025);
+            pointer-events: none; white-space: nowrap; line-height: 1;
+            letter-spacing: 0.1em;
+        }
+
+        .download-inner {
+            max-width: 960px; margin: 0 auto;
+            display: flex; align-items: center; justify-content: space-between;
+            gap: 3rem; flex-wrap: wrap; position: relative;
+        }
+        .download-text h2 {
+            font-family: var(--font-title);
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            letter-spacing: 0.06em; line-height: 1; margin-bottom: 0.5rem;
+        }
+        .download-text p { color: var(--text-dim); font-style: italic; }
+
+        .btn-group { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+        .dl-btn {
+            display: flex; flex-direction: column; align-items: center;
+            text-decoration: none; padding: 1.1rem 2rem;
+            border-radius: 4px; font-family: var(--font-title);
+            transition: transform 0.2s, box-shadow 0.2s;
+            min-width: 165px; text-align: center;
+        }
+        .dl-btn:hover { transform: translateY(-4px); }
+
+        .dl-btn.win {
+            background: linear-gradient(135deg, #1a3a8f, #2a52c0);
+            color: var(--text);
+            border: 1px solid rgba(74,127,232,0.5);
+            box-shadow: 0 8px 30px rgba(74,127,232,0.15);
+        }
+        .dl-btn.win:hover { box-shadow: 0 12px 40px rgba(74,127,232,0.3); }
+        .dl-btn.lin {
+            background: var(--surface2); color: var(--text);
+            border: 1px solid var(--border);
+        }
+        .dl-btn.lin:hover { border-color: rgba(74,127,232,0.3); }
+
+        .dl-os { font-size: 0.85rem; font-weight: 700; letter-spacing: 0.08em; }
+        .dl-sub { font-size: 0.7rem; opacity: 0.6; margin-top: 3px; letter-spacing: 0.06em; }
+
+        /* ── CONTACTO ── */
+        .contact-top { margin-bottom: 2rem; }
+        .contact-top h2 {
+            font-family: var(--font-title);
+            font-size: clamp(2rem, 5vw, 3rem);
+            letter-spacing: 0.06em; line-height: 1; margin-bottom: 0.4rem;
+        }
+        .contact-top p { color: var(--text-dim); font-style: italic; }
+
+        .form-card {
+            background: var(--surface); border: 1px solid var(--border);
+            border-radius: var(--radius-md); padding: 2.5rem;
+            max-width: 680px; position: relative;
+        }
+        .form-card::before, .form-card::after {
+            content: ''; position: absolute;
+            width: 20px; height: 20px; border-color: rgba(200,168,75,0.3); border-style: solid;
+        }
+        .form-card::before { top: 8px; left: 8px; border-width: 1px 0 0 1px; }
+        .form-card::after  { bottom: 8px; right: 8px; border-width: 0 1px 1px 0; }
+
+        .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.25rem; }
+        @media (max-width: 520px) { .field-row { grid-template-columns: 1fr; } }
+        .field { margin-bottom: 1.25rem; }
+        .field:last-child { margin-bottom: 0; }
+
+        label {
+            display: block; font-family: var(--font-title);
+            font-size: 0.62rem; font-weight: 400;
+            letter-spacing: 0.15em; text-transform: uppercase;
+            color: var(--text-dim); margin-bottom: 8px;
+        }
+
+        input, textarea {
+            width: 100%; background: var(--bg);
+            border: 1px solid rgba(74,127,232,0.12);
+            border-radius: var(--radius-sm);
+            padding: 0.85rem 1rem; color: var(--text);
+            font-family: var(--font-body); font-size: 1rem;
+            outline: none; transition: border-color 0.2s, box-shadow 0.2s;
+            resize: vertical;
+        }
+        input::placeholder, textarea::placeholder { color: var(--text-muted); font-style: italic; }
+        input:focus, textarea:focus {
+            border-color: rgba(74,127,232,0.4);
+            box-shadow: 0 0 0 3px rgba(74,127,232,0.07);
+        }
+
+        .submit-btn {
+            margin-top: 0.5rem; width: 100%; padding: 1rem;
+            background: linear-gradient(135deg, #1a3a8f, #2a52c0);
+            color: var(--text);
+            border: 1px solid rgba(74,127,232,0.4);
+            border-radius: 4px;
+            font-family: var(--font-title); font-weight: 700;
+            font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(74,127,232,0.15);
+            transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+        }
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(74,127,232,0.3);
+            border-color: rgba(107,159,255,0.6);
+        }
+        .submit-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+        .success-msg { text-align: center; padding: 2.5rem 0; animation: fadeUp 0.5s ease; }
+        .success-icon { font-size: 3rem; margin-bottom: 1rem; }
+        .success-msg h3 {
+            font-family: var(--font-title); font-size: 2rem;
+            letter-spacing: 0.08em; margin-bottom: 0.5rem; color: var(--text);
+        }
+        .success-msg p { color: var(--text-dim); font-style: italic; margin-bottom: 1.5rem; }
+        .btn-back {
+            background: none; border: 1px solid rgba(74,127,232,0.3);
+            color: var(--text-dim); padding: 8px 24px; border-radius: 4px;
+            cursor: pointer; font-family: var(--font-title);
+            font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase;
+            transition: border-color 0.2s, color 0.2s;
+        }
+        .btn-back:hover { border-color: var(--accent); color: var(--text); }
+
+        /* ── FOOTER ── */
+        .footer { position: relative; z-index: 5; border-top: 1px solid var(--border); padding: 2.5rem 1.5rem; }
+        .footer-inner {
+            max-width: 960px; margin: 0 auto;
+            display: flex; align-items: center; justify-content: space-between;
+            flex-wrap: wrap; gap: 1rem;
+        }
+        .footer-logo {
+            font-family: var(--font-title); letter-spacing: 0.12em;
+            font-size: 1.1rem; color: var(--text-dim);
+        }
+        .footer-copy { color: var(--text-muted); font-size: 0.85rem; font-style: italic; }
+
+        /* ── ANIMACIONES ── */
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 680px) {
+            .download-inner { flex-direction: column; text-align: center; }
+            .btn-group { justify-content: center; }
+            .form-card { padding: 1.75rem 1.25rem; }
+            .download-section { padding: 4rem 1.5rem; }
+        }
+    </style>
 </head>
 <body>
 
-    <!-- Fondo animado con partículas/tinta -->
     <div class="bg-layer">
         <div class="ink-blob b1"></div>
         <div class="ink-blob b2"></div>
@@ -17,14 +544,15 @@
         <canvas id="particles"></canvas>
     </div>
 
-    <!-- HERO -->
     <header class="hero">
         <div class="hero-inner">
-            <span class="badge">PROYECTO INDIE · Por Adrián López y Nathan Ruano</span>
+            <div class="ornament"><div class="ornament-diamond"></div></div>
+            <span class="badge">Proyecto Indie · Adrián López &amp; Nathan Ruano</span>
             <h1 class="logo">
                 <span class="logo-ink">INK</span>
                 <span class="logo-tower">TOWER</span>
             </h1>
+            <div class="logo-rule"><div class="logo-rule-center"></div></div>
             <p class="tagline">Desafía a la gravedad en una torre donde cada salto cuenta.</p>
             <div class="hero-cta">
                 <a href="#download" class="btn-primary">Descargar gratis</a>
@@ -38,18 +566,18 @@
 
     <main class="container">
 
-        <!-- SCREENSHOT -->
-        <section class="section" id="screenshot">
+        <section class="section reveal" id="screenshot">
             <div class="media-card">
                 <div class="media-inner">
-                    <img src="nathanfotoaura.png" alt="Captura de Ink Tower" class="game-img">
+                    <img src="nathanfotoaura.png" alt="Captura de Ink Tower" class="game-img"
+                         onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+                    <div class="media-placeholder" style="display:none;">INK TOWER</div>
                     <div class="media-badge">Alpha Build v1.0</div>
                 </div>
             </div>
         </section>
 
-        <!-- FEATURES -->
-        <section class="section" id="features">
+        <section class="section reveal" id="features">
             <div class="section-label">¿Por qué Ink Tower?</div>
             <div class="features-grid">
                 <div class="feature-card">
@@ -62,7 +590,7 @@
                     <div class="feature-num">02</div>
                     <div class="feature-icon">🏗️</div>
                     <h3>Niveles Dinámicos</h3>
-                    <p>LLega rapido antes de que se acabe el tiempo.</p>
+                    <p>Llega rápido antes de que se acabe el tiempo. El reloj no perdona.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-num">03</div>
@@ -73,12 +601,11 @@
             </div>
         </section>
 
-        <!-- CONTROLES -->
-        <section class="section" id="controls">
+        <section class="section reveal" id="controls">
             <div class="section-label">Cómo jugar</div>
             <div class="controls-card">
                 <div class="controls-title">
-                    <span class="ctrl-icon">🎮</span> Controles
+                    <span>⚔️</span> Controles
                 </div>
                 <div class="controls-list">
                     <div class="ctrl-row">
@@ -95,11 +622,10 @@
             </div>
         </section>
 
-        <!-- DESCARGA -->
-        <section class="download-section" id="download">
+        <section class="download-section reveal" id="download">
             <div class="download-inner">
                 <div class="download-text">
-                    <div class="section-label light">Descarga</div>
+                    <div class="section-label light" style="color:rgba(200,168,75,0.6);">Descarga</div>
                     <h2>¡Únete al ascenso!</h2>
                     <p>Gratis. Sin instalación. Sólo sube.</p>
                 </div>
@@ -116,8 +642,7 @@
             </div>
         </section>
 
-        <!-- CONTACTO -->
-        <section class="section contact-section" id="contact">
+        <section class="section contact-section reveal" id="contact">
             <div class="section-label">Contacto</div>
             <div class="contact-top">
                 <h2>¿Bugs? ¿Sugerencias?</h2>
@@ -125,29 +650,25 @@
             </div>
 
             <div class="form-card">
-                <form id="inkForm" action="https://formspree.io/f/xpqonjya" method="POST">
+                <form id="inkForm" action="https://formspree.io/f/xpqonjya" method="POST" novalidate>
                     <input type="hidden" name="_subject" value="Nuevo mensaje de Ink Tower">
-
                     <div class="field-row">
                         <div class="field">
                             <label for="full-name">Nombre</label>
-                            <input type="text" id="full-name" name="name" placeholder="Tu nombre artístico" required>
+                            <input type="text" id="full-name" name="name" placeholder="Tu nombre artístico" autocomplete="name" required>
                         </div>
                         <div class="field">
                             <label for="email-addr">Email</label>
-                            <input type="email" id="email-addr" name="email" placeholder="correo@ejemplo.com" required>
+                            <input type="email" id="email-addr" name="email" placeholder="correo@ejemplo.com" autocomplete="email" required>
                         </div>
                     </div>
-
                     <div class="field">
                         <label for="msg">Mensaje</label>
                         <textarea id="msg" name="message" rows="5" placeholder="Cuéntanos tu experiencia..." required></textarea>
                     </div>
-
                     <button type="submit" id="submit-btn" class="submit-btn">Enviar comentarios →</button>
                 </form>
-
-                <div id="success-msg" class="success-msg" style="display:none">
+                <div id="success-msg" class="success-msg" style="display:none" role="alert">
                     <div class="success-icon">✅</div>
                     <h3>¡Recibido!</h3>
                     <p>Gracias por ayudarnos a mejorar Ink Tower.</p>
@@ -166,83 +687,62 @@
     </footer>
 
     <script>
-        // Partículas de tinta
+        // ── Partículas ──
         const canvas = document.getElementById('particles');
         const ctx = canvas.getContext('2d');
-        let W, H, particles = [];
+        let W, H, rafId;
+        const pts = [];
 
-        function resize() {
-            W = canvas.width = window.innerWidth;
-            H = canvas.height = window.innerHeight;
-        }
-        resize();
-        window.addEventListener('resize', resize);
+        function resize() { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
+        resize(); window.addEventListener('resize', resize);
+        function rand(a, b) { return a + Math.random() * (b - a); }
 
-        function randomBetween(a, b) { return a + Math.random() * (b - a); }
-
-        for (let i = 0; i < 38; i++) {
-            particles.push({
-                x: randomBetween(0, window.innerWidth),
-                y: randomBetween(0, window.innerHeight),
-                r: randomBetween(1.5, 4),
-                dx: randomBetween(-0.3, 0.3),
-                dy: randomBetween(-0.6, -0.15),
-                alpha: randomBetween(0.15, 0.45),
+        for (let i = 0; i < 45; i++) {
+            pts.push({
+                x: rand(0, innerWidth), y: rand(0, innerHeight),
+                r: rand(0.8, 2.5), dx: rand(-0.2, 0.2), dy: rand(-0.5, -0.1),
+                alpha: rand(0.06, 0.3),
+                color: Math.random() > 0.8 ? '200,168,75' : '74,127,232'
             });
         }
 
-        function drawParticles() {
+        function draw() {
             ctx.clearRect(0, 0, W, H);
-            particles.forEach(p => {
-                ctx.beginPath();
-                ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(99,179,237,${p.alpha})`;
-                ctx.fill();
-                p.x += p.dx;
-                p.y += p.dy;
-                if (p.y < -10) { p.y = H + 10; p.x = randomBetween(0, W); }
+            for (const p of pts) {
+                ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(${p.color},${p.alpha})`; ctx.fill();
+                p.x += p.dx; p.y += p.dy;
+                if (p.y < -10) { p.y = H + 10; p.x = rand(0, W); }
                 if (p.x < -10) p.x = W + 10;
                 if (p.x > W + 10) p.x = -10;
-            });
-            requestAnimationFrame(drawParticles);
+            }
+            rafId = requestAnimationFrame(draw);
         }
-        drawParticles();
+        document.addEventListener('visibilitychange', () => { if (document.hidden) cancelAnimationFrame(rafId); else draw(); });
+        draw();
 
-        // Scroll reveal
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(e => {
-                if (e.isIntersecting) e.target.classList.add('visible');
-            });
-        }, { threshold: 0.1 });
+        // ── Scroll reveal ──
+        const obs = new IntersectionObserver(entries => {
+            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+        }, { threshold: 0.07 });
+        document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
-        document.querySelectorAll('.section, .download-section, .contact-section').forEach(el => {
-            el.classList.add('reveal');
-            observer.observe(el);
-        });
-
-        // Formulario
+        // ── Formulario ──
         const form = document.getElementById('inkForm');
-        const success = document.getElementById('success-msg');
+        const successMsg = document.getElementById('success-msg');
         const btn = document.getElementById('submit-btn');
 
-        form.addEventListener('submit', async (e) => {
+        form.addEventListener('submit', async e => {
             e.preventDefault();
-            btn.disabled = true;
-            btn.textContent = "Enviando...";
+            if (!form.checkValidity()) { form.reportValidity(); return; }
+            btn.disabled = true; btn.textContent = 'Enviando…';
             try {
-                const res = await fetch(form.action, {
-                    method: 'POST',
-                    body: new FormData(form),
-                    headers: { 'Accept': 'application/json' }
-                });
-                if (res.ok) {
-                    form.style.display = 'none';
-                    success.style.display = 'block';
-                } else throw new Error();
+                const res = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } });
+                if (res.ok) { form.style.display = 'none'; successMsg.style.display = 'block'; }
+                else throw new Error();
             } catch {
-                alert("Hubo un problema. Revisa tu conexión.");
-                btn.disabled = false;
-                btn.textContent = "Enviar comentarios →";
+                alert('Hubo un problema al enviar. Revisa tu conexión e inténtalo de nuevo.');
+                btn.disabled = false; btn.textContent = 'Enviar comentarios →';
             }
         });
     </script>
