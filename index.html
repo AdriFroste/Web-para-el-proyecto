@@ -30,7 +30,7 @@
 
     <header class="hero" id="inicio">
         <div class="hero-inner">
-            <span class="badge">Proyecto Indie</span>
+            <span class="badge">Proyecto Indie SMX</span>
             <h1 class="logo">
                 <span class="logo-ink">INK</span>
                 <span class="logo-tower">TOWER</span>
@@ -52,15 +52,19 @@
             <div class="section-label">Sobre Nosotros</div>
             <div class="about-card">
                 <h2>El equipo detrás de la torre</h2>
-                <p>Somos dos estudiantes de SMX y este es nuestro proyecto. Nos apasionan los videojuegos que ofrecen un verdadero desafío y no perdonan errores.</p>
+                <p>Somos dos estudiantes de <b>SMX</b> y este es nuestro proyecto. Nos apasionan los videojuegos que ofrecen un verdadero desafío y no perdonan errores.</p>
                 
                 <div class="team-grid">
                     <div class="team-member">
-                        <img src="adrian.png" alt="Adrián" class="game-img">
+                        <div class="img-wrapper">
+                            <img src="adrian.png" alt="Adrián" onerror="this.src='https://via.placeholder.com/150?text=Adrian'">
+                        </div>
                         <h4>Adrián López</h4>
                     </div>
                     <div class="team-member">
-                        <img src="nathan.png" alt="Nathan" class="game-img">
+                        <div class="img-wrapper">
+                            <img src="nathan.png" alt="Nathan" onerror="this.src='https://via.placeholder.com/150?text=Nathan'">
+                        </div>
                         <h4>Nathan Ruano</h4>
                     </div>
                 </div>
@@ -151,4 +155,89 @@
             </div>
 
             <div class="form-card">
-                <form id="inkForm" action="https://formspree.io/f/xpqonjya" method="POST"
+                <form id="inkForm" action="https://formspree.io/f/xpqonjya" method="POST" novalidate>
+                    <div class="field-row">
+                        <div class="field">
+                            <label for="full-name">Nombre</label>
+                            <input type="text" id="full-name" name="name" placeholder="Tu nombre" required>
+                        </div>
+                        <div class="field">
+                            <label for="email-addr">Email</label>
+                            <input type="email" id="email-addr" name="email" placeholder="correo@ejemplo.com" required>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label for="msg">Mensaje</label>
+                        <textarea id="msg" name="message" rows="5" placeholder="Cuéntanos tu experiencia..." required></textarea>
+                    </div>
+                    <button type="submit" id="submit-btn" class="submit-btn">Enviar comentarios →</button>
+                </form>
+                <div id="success-msg" class="success-msg" style="display:none">
+                    <div class="success-icon">✅</div>
+                    <h3>¡Recibido!</h3>
+                    <p>Gracias por ayudarnos a mejorar Ink Tower.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <span class="footer-logo">INK TOWER</span>
+            <span class="footer-copy">© 2026 Ink Tower Devs · Estudiantes de SMX.</span>
+        </div>
+    </footer>
+
+    <script>
+        // Partículas de fondo
+        const canvas = document.getElementById('particles');
+        const ctx = canvas.getContext('2d');
+        let W, H;
+        const pts = [];
+
+        function resize() { 
+            W = canvas.width = window.innerWidth; 
+            H = canvas.height = window.innerHeight; 
+        }
+        resize();
+        window.addEventListener('resize', resize);
+
+        for (let i = 0; i < 50; i++) {
+            pts.push({
+                x: Math.random() * W, 
+                y: Math.random() * H,
+                r: Math.random() * 2 + 1, 
+                dx: (Math.random() - 0.5) * 0.5, 
+                dy: Math.random() * -0.5 - 0.2,
+                alpha: Math.random() * 0.3 + 0.1
+            });
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, W, H);
+            pts.forEach(p => {
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(99, 179, 237, ${p.alpha})`;
+                ctx.fill();
+                p.x += p.dx; p.y += p.dy;
+                if (p.y < -10) p.y = H + 10;
+            });
+            requestAnimationFrame(draw);
+        }
+        draw();
+
+        // Scroll reveal (Mejorado para evitar que las cosas sean invisibles)
+        const obs = new IntersectionObserver(entries => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    e.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+    </script>
+</body>
+</html>
