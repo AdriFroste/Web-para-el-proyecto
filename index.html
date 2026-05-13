@@ -6,361 +6,275 @@
     <title>Ascend Tower | CRT Edición - La Piedra y el Acero</title>
     <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&family=Crimson+Pro:ital,wght@0,400;0,700;1,400;1,700&family=Bebas+Neue&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
             --azul-muro: #001a33;
             --azul-brillante: #0077ff;
-            --negro-cemento: #050505;
-            --purpura-grial: #6a0dad;
-            --gris-hierro: #1e1e1e;
+            --azul-fuego: #00ccff;
         }
-
-        /* ---- EFECTO CRT GLOBAL ---- */
         body {
-            margin: 0;
-            padding: 0;
             background-color: #000;
             color: #d4d4d4;
             font-family: 'Crimson Pro', serif;
             overflow-x: hidden;
             cursor: crosshair;
         }
-
-        #crt-screen {
-            min-height: 100vh;
-            width: 100%;
-            overflow: hidden;
-            position: relative;
-            filter: url(#fisheye) contrast(1.08) brightness(1.05);
-        }
-
         .crt-glass {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             box-shadow: inset 0 0 150px rgba(0,0,0,0.8), inset 0 0 300px rgba(0,0,0,0.9);
-            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.3) 50%),
-                        linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+            background:
+                linear-gradient(rgba(18,16,16,0) 50%, rgba(0,0,0,0.3) 50%),
+                linear-gradient(90deg, rgba(255,0,0,0.03), rgba(0,255,0,0.01), rgba(0,0,255,0.03));
             background-size: 100% 3px, 3px 100%;
-            z-index: 9999;
-            pointer-events: none;
+            z-index: 9999; pointer-events: none;
             animation: flicker 0.12s infinite;
         }
-
-        @keyframes flicker {
-            0% { opacity: 0.98; }
-            100% { opacity: 1; }
+        @keyframes flicker { 0%{opacity:0.97} 50%{opacity:1} 100%{opacity:0.98} }
+        #crt-screen {
+            min-height: 100vh; width: 100%; overflow: hidden; position: relative;
+            filter: url(#fisheye) contrast(1.08) brightness(1.05);
         }
-
         .ladrillos-bg {
-            background-color: var(--negro-cemento);
-            background-image: linear-gradient(335deg, var(--negro-cemento) 23px, transparent 23px),
-                              linear-gradient(155deg, var(--negro-cemento) 23px, transparent 23px),
-                              linear-gradient(335deg, var(--negro-cemento) 23px, transparent 23px),
-                              linear-gradient(155deg, var(--negro-cemento) 23px, transparent 23px);
+            min-height: 100vh;
+            background-color: var(--azul-muro);
+            background-image:
+                linear-gradient(335deg, #001020 23px, transparent 23px),
+                linear-gradient(155deg, #001020 23px, transparent 23px),
+                linear-gradient(335deg, #001020 23px, transparent 23px),
+                linear-gradient(155deg, #001020 23px, transparent 23px);
             background-size: 58px 58px;
             background-position: 0px 2px, 4px 35px, 29px 31px, 34px 6px;
-            background-color: var(--azul-muro);
-            min-height: 100vh;
         }
-
         #vignette {
             min-height: 100vh;
+            /* La linterna sigue al ratón via JS con --mouse-x / --mouse-y */
             background: radial-gradient(
-                circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-                rgba(0, 119, 255, 0.4) 0%,
-                rgba(0, 119, 255, 0.15) 25%,
-                transparent 450px,
-                rgba(0,0,0,0.96) 90%
+                circle at var(--mouse-x, 50%) var(--mouse-y, 30%),
+                rgba(0, 119, 255, 0.45) 0%,
+                rgba(0, 119, 255, 0.18) 15%,
+                transparent 380px,
+                rgba(0, 0, 0, 0.97) 100%
             );
             background-attachment: fixed;
-            transition: background 0.4s ease;
+            transition: background-position 0.05s, background 0.4s ease;
         }
+        #vignette.ignited { background: rgba(0,119,255,0.35) !important; }
 
-        #vignette.ignited { background: rgba(0, 119, 255, 0.4) !important; }
-
-        /* estilos del contenido medieval + moderno */
-        .sc-container {
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 2rem 2rem 4rem;
-            position: relative;
-            z-index: 5;
-        }
-
-        /* navbar estilo heráldico */
+        /* NAVBAR */
         .sc-navbar {
-            background: rgba(0, 10, 20, 0.85);
-            backdrop-filter: blur(8px);
-            border-bottom: 1px solid var(--azul-brillante);
-            padding: 0.8rem 2rem;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            font-family: 'Bebas Neue', cursive;
+            background: rgba(0,8,18,0.9); backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0,119,255,0.6);
+            padding: 0.75rem 2rem; position: sticky; top: 0; z-index: 1000;
         }
         .sc-nav-inner {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 1rem;
+            max-width: 1280px; margin: 0 auto;
+            display: flex; align-items: center; justify-content: space-between; gap: 1rem;
         }
-        .sc-logo-group {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
+        .sc-logo-group { display: flex; align-items: center; gap: 10px; text-decoration: none; }
         .sc-logo-img {
-            width: 48px;
-            height: 48px;
-            filter: drop-shadow(0 0 5px var(--azul-brillante));
-            background: #0a1a2a;
-            border-radius: 50%;
-            object-fit: cover;
+            width: 44px; height: 44px; border-radius: 50%; object-fit: cover;
+            filter: drop-shadow(0 0 6px var(--azul-brillante));
+            border: 1px solid rgba(0,119,255,0.5);
         }
         .sc-logo-text {
-            font-family: 'MedievalSharp', cursive;
-            font-size: 1.6rem;
-            line-height: 1.1;
-            text-decoration: none;
-            color: #e0e0e0;
-            letter-spacing: 2px;
-            text-shadow: 0 0 5px var(--azul-brillante);
+            font-family: 'MedievalSharp', cursive; font-size: 1.3rem; line-height: 1.15;
+            color: #e0e0e0; letter-spacing: 2px; text-shadow: 0 0 8px var(--azul-brillante);
         }
-        .sc-nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
+        .sc-nav-links { display: flex; gap: 2rem; list-style: none; }
         .sc-nav-links a {
-            text-decoration: none;
-            color: #bbd9ff;
-            font-size: 1.3rem;
-            transition: 0.2s;
-            font-weight: bold;
+            text-decoration: none; color: #99ccff;
+            font-family: 'Bebas Neue', sans-serif; font-size: 1.25rem;
+            letter-spacing: 2px; transition: 0.2s;
         }
-        .sc-nav-links a:hover {
-            color: var(--azul-brillante);
-            text-shadow: 0 0 6px cyan;
-        }
+        .sc-nav-links a:hover { color: var(--azul-fuego); text-shadow: 0 0 8px cyan; }
         .sc-btn {
-            padding: 10px 28px;
-            font-family: 'Bebas Neue', monospace;
-            font-size: 1.2rem;
-            font-weight: bold;
-            text-decoration: none;
-            border-radius: 2px;
-            transition: 0.2s;
-            display: inline-block;
-            letter-spacing: 1.5px;
-            background: #111;
-            border: 1px solid var(--azul-brillante);
-            color: var(--azul-brillante);
-            box-shadow: 0 0 8px rgba(0,119,255,0.3);
-            cursor: pointer;
+            padding: 9px 24px; font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.15rem; letter-spacing: 2px; text-decoration: none;
+            border-radius: 2px; transition: 0.2s; display: inline-block; cursor: pointer; border: none;
         }
-        .sc-btn-cyan {
-            background: #001d3d;
-            border-color: #00a6ff;
-            color: #b8e2ff;
-        }
-        .sc-btn-purple {
-            border-color: #b77eff;
-            color: #cfacff;
-            background: #1a0a2e;
-        }
+        .sc-btn-cyan { background: #001d3d; border: 1px solid #00a6ff; color: #b8e2ff; }
+        .sc-btn-purple { background: #1a0a2e; border: 1px solid #b77eff; color: #cfacff; }
         .sc-btn:hover {
-            transform: scale(1.02);
-            background: var(--azul-brillante);
-            color: black;
-            box-shadow: 0 0 18px cyan;
-            border-color: white;
+            transform: scale(1.03); box-shadow: 0 0 20px cyan;
+            background: rgba(0,100,255,0.25); border-color: white !important; color: white;
         }
 
-        /* secciones y cards con estética CRT + medieval */
-        .sc-hero-banner {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            align-items: center;
-            gap: 30px;
-            margin: 60px 0 40px;
-            background: rgba(0, 0, 0, 0.55);
-            padding: 30px;
-            border-left: 4px solid var(--azul-brillante);
-            backdrop-filter: blur(2px);
-        }
-        .sc-hero-content {
-            flex: 1;
-        }
-        .sc-badge {
-            background: #000000aa;
-            padding: 5px 12px;
-            font-size: 0.8rem;
-            letter-spacing: 2px;
-            border: 1px solid var(--azul-brillante);
-            font-family: monospace;
-        }
-        .sc-hero-content h1 {
-            font-family: 'MedievalSharp', cursive;
-            font-size: 4rem;
-            margin: 20px 0;
-            text-shadow: 0 0 12px #0077ff;
-            color: #f0f4ff;
-        }
-        .sc-hero-graphic img {
-            max-width: 380px;
-            border-radius: 4px;
-            box-shadow: 0 0 20px rgba(0,119,255,0.4);
-            border: 1px solid cyan;
-            filter: grayscale(0.2) contrast(1.1);
-        }
-        .sc-section-title {
-            font-family: 'MedievalSharp', cursive;
-            font-size: 2.7rem;
-            margin: 60px 0 20px 0;
-            border-bottom: 2px solid var(--azul-brillante);
-            display: inline-block;
-            letter-spacing: 4px;
-        }
-        .sc-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 35px;
-            margin: 30px 0;
-        }
-        .sc-card {
-            background: rgba(0, 10, 22, 0.7);
-            backdrop-filter: blur(3px);
-            border: 1px solid #2a4c7a;
-            transition: 0.25s;
-            border-radius: 8px;
-            overflow: hidden;
-        }
-        .sc-card:hover {
-            border-color: var(--azul-brillante);
-            box-shadow: 0 0 16px rgba(0,110,255,0.4);
-        }
-        .sc-card-top {
-            padding: 25px 0;
-            text-align: center;
-            background: #031c2e;
-        }
-        .img-wrapper img {
-            width: 130px;
-            height: 130px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid #00a6ff;
-        }
-        .sc-card-bottom {
-            padding: 20px;
-            text-align: center;
-        }
-        .name {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 1.8rem;
-            display: block;
-            color: var(--azul-brillante);
-        }
-        .role {
-            font-family: 'Crimson Pro', serif;
-            font-size: 1rem;
-            font-style: italic;
-        }
-        .sc-feature-icon {
-            font-size: 3.5rem;
-        }
-
-        .dark-form {
-            display: flex;
-            flex-direction: column;
-            gap: 18px;
-        }
-        .form-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-        .dark-form input, .dark-form textarea {
-            background: #0a121f;
-            border: 1px solid #2c577c;
-            padding: 12px 18px;
-            color: #cfecff;
-            font-family: 'Crimson Pro', monospace;
-            width: 100%;
-            resize: vertical;
-        }
-        .dark-form input:focus, .dark-form textarea:focus {
-            outline: none;
-            border-color: var(--azul-brillante);
-            box-shadow: 0 0 6px cyan;
-        }
-        .sc-footer {
-            text-align: center;
-            padding: 2rem;
-            margin-top: 3rem;
-            border-top: 1px solid #2a4c6e;
-            font-family: monospace;
-            font-size: 0.85rem;
-        }
-        .reveal {
-            transition: all 0.9s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-        }
-        /* responsivo */
-        @media (max-width: 860px) {
-            .sc-nav-inner { flex-direction: column; }
-            .sc-hero-content h1 { font-size: 2.8rem; }
-            .sc-hero-banner { flex-direction: column; text-align: center; }
-            .torch-wrapper { display: none; }
-        }
-        canvas#particlesCanvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
-            opacity: 0.35;
-        }
+        /* HEADER */
         header {
-            position: relative;
-            z-index: 10;
+            position: relative; z-index: 10; text-align: center;
+            padding: 90px 20px 50px;
+            background: linear-gradient(to bottom, rgba(0,10,22,0.6), transparent);
         }
         .torch-wrapper {
-            position: absolute;
-            top: 30%;
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            padding: 0 6%;
-            box-sizing: border-box;
-            z-index: 20;
-            pointer-events: none;
+            position: absolute; top: 50%; transform: translateY(-55%);
+            width: 100%; display: flex; justify-content: space-between;
+            padding: 0 6%; box-sizing: border-box; z-index: 20; pointer-events: none;
         }
         .torch-hitbox {
-            pointer-events: auto;
-            width: 90px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            cursor: pointer;
+            pointer-events: auto; width: 90px;
+            display: flex; flex-direction: column; align-items: center; cursor: pointer;
         }
         .torch-gif {
-            width: 70px;
-            filter: hue-rotate(200deg) brightness(1.5) drop-shadow(0 0 12px cyan);
+            width: 72px; height: auto;
+            filter: hue-rotate(200deg) brightness(1.6) saturate(1.5) drop-shadow(0 0 14px var(--azul-brillante));
+            image-rendering: pixelated; margin-bottom: -8px;
+        }
+        .torch-hitbox:hover .torch-gif {
+            filter: hue-rotate(200deg) brightness(2.2) saturate(2) drop-shadow(0 0 28px cyan);
         }
         .torch-base {
-            width: 14px;
-            height: 75px;
-            background: linear-gradient(90deg, #0a0a0a 0%, #3a3a3a 50%, #0a0a0a 100%);
-            border-radius: 2px;
+            width: 14px; height: 80px;
+            background: linear-gradient(90deg, #050a10 0%, #2a4060 50%, #050a10 100%);
+            border-radius: 2px; border-left: 1px solid #1a3a5a; position: relative;
+        }
+        .torch-base::after {
+            content: ''; position: absolute; top: -10px; left: -7px;
+            width: 26px; height: 16px;
+            background: radial-gradient(circle at center, #2a3a4a, #0a1a2a);
+            border-radius: 4px 4px 2px 2px; border: 2px solid #000;
+        }
+        .titulo-principal {
+            font-family: 'MedievalSharp', cursive; font-size: 5rem; color: #f0f4ff;
+            margin: 0 0 12px; letter-spacing: 10px;
+            text-shadow: 4px 4px 0px #000, 0 0 30px var(--azul-brillante), 0 0 70px rgba(0,119,255,0.3);
+        }
+        .subtitulo-header {
+            font-family: 'MedievalSharp', cursive; color: var(--azul-brillante);
+            letter-spacing: 7px; font-size: 0.95rem;
+            text-shadow: 0 0 12px rgba(0,119,255,0.7);
+        }
+
+        /* CONTENIDO */
+        .sc-container { max-width: 1280px; margin: 0 auto; padding: 2rem 2rem 4rem; position: relative; z-index: 5; }
+        .sc-hero-banner {
+            display: flex; flex-wrap: wrap; justify-content: space-between;
+            align-items: center; gap: 30px; margin: 50px 0 40px;
+            background: rgba(0,0,0,0.55); padding: 32px 36px;
+            border-left: 4px solid var(--azul-brillante); backdrop-filter: blur(3px);
+        }
+        .sc-hero-content { flex: 1; }
+        .sc-badge {
+            background: rgba(0,0,0,0.75); padding: 4px 12px; font-size: 0.78rem;
+            letter-spacing: 2px; border: 1px solid var(--azul-brillante);
+            font-family: 'Bebas Neue', sans-serif; color: var(--azul-fuego); display: inline-block;
+        }
+        .sc-hero-content h1 {
+            font-family: 'MedievalSharp', cursive; font-size: 3.8rem;
+            margin: 16px 0 12px; color: #f0f4ff;
+            text-shadow: 0 0 14px rgba(0,119,255,0.5); line-height: 1.1;
+        }
+        .sc-hero-content p { font-size: 1.15rem; line-height: 1.75; color: #a8c8e8; max-width: 520px; }
+        .sc-hero-btns { margin-top: 22px; }
+        .sc-hero-graphic img {
+            max-width: 370px; border-radius: 4px;
+            box-shadow: 0 0 24px rgba(0,119,255,0.35);
+            border: 1px solid rgba(0,204,255,0.4);
+            filter: grayscale(0.1) contrast(1.1); display: block;
+        }
+        .sc-section-title {
+            font-family: 'MedievalSharp', cursive; font-size: 2.4rem;
+            margin: 60px 0 20px; border-bottom: 2px solid rgba(0,119,255,0.5);
+            padding-bottom: 6px; display: inline-block; letter-spacing: 4px;
+            color: #cce0ff; text-shadow: 0 0 10px rgba(0,119,255,0.3);
+        }
+        .sc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin: 24px 0; }
+        .sc-card {
+            background: rgba(0,10,22,0.75); backdrop-filter: blur(3px);
+            border: 1px solid #1e3c5a; border-radius: 6px; overflow: hidden; transition: 0.25s;
+        }
+        .sc-card:hover { border-color: var(--azul-brillante); box-shadow: 0 0 18px rgba(0,110,255,0.35); }
+        .sc-card-top { padding: 26px 0; text-align: center; background: #020f1e; }
+        .img-wrapper img {
+            width: 125px; height: 125px; border-radius: 50%; object-fit: cover;
+            border: 2px solid #00a6ff; box-shadow: 0 0 12px rgba(0,166,255,0.3);
+        }
+        .sc-card-bottom { padding: 18px; text-align: center; }
+        .name { font-family: 'Bebas Neue', sans-serif; font-size: 1.65rem; display: block; color: var(--azul-fuego); letter-spacing: 2px; }
+        .role { font-family: 'Crimson Pro', serif; font-size: 0.95rem; font-style: italic; color: #7799bb; }
+        .sc-feature-icon { font-size: 3.2rem; }
+
+        /* VIDEO */
+        .video-slot {
+            margin: 20px 0 40px; background: rgba(0,0,0,0.7);
+            border: 2px solid var(--azul-brillante); border-radius: 6px;
+            padding: 8px; box-shadow: 0 0 25px rgba(0,119,255,0.2); transition: all 0.3s;
+        }
+        .video-slot:hover { border-color: var(--azul-fuego); box-shadow: 0 0 40px rgba(0,204,255,0.4); }
+        .video-placeholder {
+            aspect-ratio: 16/9; background: linear-gradient(135deg, #050515 0%, #001a33 100%);
+            border-radius: 4px; display: flex; flex-direction: column;
+            align-items: center; justify-content: center; gap: 16px;
+            cursor: pointer; overflow: hidden; transition: all 0.3s;
+        }
+        .video-play-icon { font-size: 5rem; opacity: 0.45; color: #00ccff; text-shadow: 0 0 20px cyan; transition: 0.3s; }
+        .video-placeholder:hover .video-play-icon { opacity: 1; transform: scale(1.1); }
+        .video-label-tag {
+            font-family: 'Bebas Neue', sans-serif; font-size: 1rem; letter-spacing: 3px;
+            border: 1px solid var(--azul-brillante); padding: 6px 20px;
+            background: rgba(0,0,0,0.6); border-radius: 30px; color: #88ccff;
+        }
+        .video-slot video { width: 100%; border-radius: 4px; display: block; }
+        .video-caption { text-align: center; margin-top: 10px; font-family: 'Bebas Neue', sans-serif; font-size: 0.8rem; color: #446688; letter-spacing: 3px; }
+
+        /* ORIGEN */
+        .sc-origen {
+            background: rgba(0,0,0,0.45); padding: 28px 32px;
+            border-left: 3px solid rgba(0,119,255,0.45); backdrop-filter: blur(2px);
+        }
+        .sc-origen p { font-size: 1.15rem; line-height: 1.8; color: #a0c0dc; }
+        .sc-origen strong { color: #d0e8ff; }
+        .sc-origen em { color: #88bbdd; }
+
+        /* DESCARGA */
+        .sc-download-banner {
+            text-align: center; background: rgba(0,0,0,0.55);
+            border-left: 4px solid var(--azul-brillante); padding: 42px 30px; margin: 40px 0;
+        }
+        .sc-download-banner h2 { font-family: 'Bebas Neue', sans-serif; font-size: 3rem; letter-spacing: 4px; color: #d4eaff; margin-bottom: 10px; }
+        .sc-download-banner p { font-size: 1.1rem; color: #7799bb; margin-bottom: 24px; }
+        .dl-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
+        /* FORMULARIO */
+        .dark-form { display: flex; flex-direction: column; gap: 16px; }
+        .form-row { display: flex; flex-wrap: wrap; gap: 16px; }
+        .dark-form input, .dark-form textarea {
+            background: #060e18; border: 1px solid #1e4060;
+            padding: 12px 16px; color: #b8d8f8;
+            font-family: 'Crimson Pro', serif; font-size: 1rem; width: 100%; resize: vertical; transition: 0.2s;
+        }
+        .dark-form input:focus, .dark-form textarea:focus {
+            outline: none; border-color: var(--azul-brillante); box-shadow: 0 0 8px rgba(0,119,255,0.4);
+        }
+        .sc-form-card {
+            background: rgba(0,8,18,0.7); border: 1px solid #1e3c5a;
+            border-radius: 6px; padding: 36px 30px; margin-bottom: 60px;
+        }
+
+        /* FOOTER */
+        .sc-footer {
+            text-align: center; padding: 2rem; margin-top: 2rem;
+            border-top: 1px solid #1a3a5a; font-family: 'Bebas Neue', sans-serif;
+            font-size: 0.8rem; letter-spacing: 2px; color: #334466;
+        }
+
+        /* PARTÍCULAS */
+        canvas#particlesCanvas {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none; z-index: 1; opacity: 0.3;
+        }
+
+        /* REVEAL */
+        .reveal { opacity: 0; transform: translateY(26px); transition: opacity 0.8s ease, transform 0.8s ease; }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+
+        /* RESPONSIVE */
+        @media (max-width: 860px) {
+            .titulo-principal { font-size: 3rem; letter-spacing: 4px; }
+            .sc-hero-banner { flex-direction: column; }
+            .sc-hero-graphic img { max-width: 100%; }
+            .torch-wrapper { display: none; }
+            .sc-nav-links { display: none; }
+            header { padding: 60px 20px 40px; }
         }
     </style>
 </head>
@@ -369,127 +283,114 @@
 <svg width="0" height="0" style="position:absolute;">
     <defs>
         <filter id="fisheye">
-            <feTurbulence type="fractalNoise" baseFrequency="0.008" numOctaves="1" result="noise" />
-            <feDisplacementMap in="SourceGraphic" in2="noise" scale="14" xChannelSelector="R" yChannelSelector="G" />
+            <feTurbulence type="fractalNoise" baseFrequency="0.008" numOctaves="1" result="noise"/>
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="14" xChannelSelector="R" yChannelSelector="G"/>
         </filter>
     </defs>
 </svg>
 
 <div class="crt-glass"></div>
+<canvas id="particlesCanvas"></canvas>
+
 <div id="crt-screen">
     <div class="ladrillos-bg">
         <div id="vignette">
-            <!-- navbar moderno -->
+
+            <!-- NAVBAR -->
             <nav class="sc-navbar">
                 <div class="sc-nav-inner">
-                    <div class="sc-logo-group">
-                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23001a33'/%3E%3Cpath fill='%230077ff' d='M50,20 L70,45 L55,45 L55,80 L45,80 L45,45 L30,45 Z'/%3E%3C/svg%3E" alt="Logo" class="sc-logo-img">
-                        <a href="#inicio" class="sc-logo-text">ASCEND<br>TOWER</a>
-                    </div>
+                    <a href="#inicio" class="sc-logo-group" style="text-decoration:none;">
+                        <img src="logo.png" alt="Logo Ascend Tower" class="sc-logo-img">
+                        <span class="sc-logo-text">ASCEND<br>TOWER</span>
+                    </a>
                     <ul class="sc-nav-links">
                         <li><a href="#about">Equipo</a></li>
                         <li><a href="#features">Juego</a></li>
+                        <li><a href="#video">Gameplay</a></li>
                         <li><a href="#contact">Contacto</a></li>
                     </ul>
                     <a href="#download" class="sc-btn sc-btn-cyan">DESCARGAR</a>
                 </div>
             </nav>
 
-            <!-- antorchas interactivas -->
-            <header style="position: relative;">
+            <!-- HEADER CON ANTORCHAS -->
+            <header id="inicio">
                 <div class="torch-wrapper">
                     <div class="torch-hitbox" onmouseenter="startIgnite()" onmouseleave="stopIgnite()">
-                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='40' r='18' fill='%23ffaa33' filter='url(%23glow)'/%3E%3Cpath d='M45,58 L55,58 L52,80 L48,80 Z' fill='%23884422'/%3E%3C/svg%3E" class="torch-gif" style="filter: hue-rotate(190deg) brightness(1.8);">
+                        <img src="fuego.gif" class="torch-gif" alt="Antorcha">
                         <div class="torch-base"></div>
                     </div>
                     <div class="torch-hitbox" onmouseenter="startIgnite()" onmouseleave="stopIgnite()">
-                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='40' r='18' fill='%23ffaa33'/%3E%3Cpath d='M45,58 L55,58 L52,80 L48,80 Z' fill='%23884422'/%3E%3C/svg%3E" class="torch-gif" style="filter: hue-rotate(190deg) brightness(1.8);">
+                        <img src="fuego.gif" class="torch-gif" alt="Antorcha">
                         <div class="torch-base"></div>
                     </div>
                 </div>
-                <div style="text-align: center; padding: 70px 20px 40px;">
-                    <h1 style="font-family:'MedievalSharp'; font-size: 4.8rem; text-shadow: 0 0 18px cyan;">ASCEND TOWER</h1>
-                    <p style="font-family:'MedievalSharp'; color:var(--azul-brillante); letter-spacing:6px;">CRÓNICAS DE LA PIEDRA Y EL ACERO</p>
-                </div>
+                <h1 class="titulo-principal">ASCEND TOWER</h1>
+                <p class="subtitulo-header">CRÓNICAS DE LA PIEDRA Y EL ACERO</p>
             </header>
 
+            <!-- CONTENIDO -->
             <main class="sc-container">
-                <!-- Hero Banner con info del juego -->
-                <div class="sc-hero-banner reveal" id="inicio">
+
+                <div class="sc-hero-banner reveal">
                     <div class="sc-hero-content">
                         <span class="sc-badge">🔥 ALPHA V1.0 DISPONIBLE</span>
-                        <h1>¡ÚNETE AL <br>ASCENSO!</h1>
+                        <h1>¡ÚNETE AL<br>ASCENSO!</h1>
                         <p>Una torre. 20 niveles estructurados. Cero puntos de control. Un plataformas 2D de corte clásico donde cada milímetro cuenta. Inspirado en la estética CRT y el desafío eterno.</p>
-                        <div class="sc-hero-btns" style="margin-top: 20px;">
+                        <div class="sc-hero-btns">
                             <a href="#download" class="sc-btn sc-btn-purple">JUGAR AHORA</a>
                         </div>
                     </div>
                     <div class="sc-hero-graphic">
-                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23001020'/%3E%3Crect x='50' y='180' width='300' height='15' fill='%23555'/%3E%3Crect x='180' y='100' width='30' height='80' fill='%2377aaff'/%3E%3Ccircle cx='100' cy='220' r='12' fill='%23ff5555'/%3E%3C/svg%3E" alt="Ascend Tower Gameplay Preview">
+                        <img src="captura_nivel.png" alt="Ascend Tower Gameplay">
                     </div>
                 </div>
 
-                <h2 class="sc-section-title">El Origen del Proyecto</h2>
-                <section class="sc-card reveal shadow-none" style="padding: 30px;">
-                    <div class="sc-card-body">
-                        <p style="font-size: 1.2rem;">El objetivo desde el principio ha sido crear una experiencia técnicamente pulida que priorice la jugabilidad. Nos encerramos a aprender <strong>Godot Engine</strong> desde cero para transformar la agilidad del personaje en un plataformas de precisión inspirado en <em>Celeste</em>. Bajo la estética de tubo catódico y antorchas, la torre exige valor y reflejos.</p>
-                    </div>
-                </section>
+                <h2 class="sc-section-title reveal">El Origen del Proyecto</h2>
+                <div class="sc-origen reveal">
+                    <p>El objetivo desde el principio ha sido crear una experiencia técnicamente pulida que priorice la jugabilidad. Nos encerramos a aprender <strong>Godot Engine</strong> desde cero para transformar la agilidad del personaje en un plataformas de precisión inspirado en <em>Celeste</em>. Bajo la estética de tubo catódico y antorchas, la torre exige valor y reflejos.</p>
+                </div>
 
-                <h2 class="sc-section-title" id="about">El Equipo de Desarrollo</h2>
-                <section class="sc-grid">
-                    <div class="sc-card reveal">
-                        <div class="sc-card-top sc-bg-dark-blue">
-                            <div class="img-wrapper">
-                                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%23113355'/%3E%3Ctext x='50' y='65' text-anchor='middle' fill='cyan' font-size='40'%3EAL%3C/text%3E%3C/svg%3E" alt="Adrián López">
-                            </div>
-                        </div>
-                        <div class="sc-card-bottom">
-                            <div class="sc-card-info">
-                                <span class="name">Adrián López</span>
-                                <span class="role">Co-Creador y Desarrollador</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="sc-card reveal">
-                        <div class="sc-card-top sc-bg-dark-purple">
-                            <div class="img-wrapper">
-                                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%23331166'/%3E%3Ctext x='50' y='65' text-anchor='middle' fill='%23cc99ff' font-size='40'%3ENR%3C/text%3E%3C/svg%3E" alt="Nathan Ruano">
-                            </div>
-                        </div>
-                        <div class="sc-card-bottom">
-                            <div class="sc-card-info">
-                                <span class="name">Nathan Ruano</span>
-                                <span class="role">Co-Creador y Desarrollador</span>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <h2 class="sc-section-title" id="features">Mecánicas de Juego</h2>
+                <h2 class="sc-section-title reveal" id="about">El Equipo de Desarrollo</h2>
                 <section class="sc-grid">
                     <div class="sc-card reveal">
                         <div class="sc-card-top">
-                            <div class="sc-feature-icon">🎮</div>
+                            <div class="img-wrapper"><img src="adrian.png" alt="Adrián López"></div>
                         </div>
+                        <div class="sc-card-bottom">
+                            <span class="name">Adrián López</span>
+                            <span class="role">Co-Creador y Desarrollador</span>
+                        </div>
+                    </div>
+                    <div class="sc-card reveal">
+                        <div class="sc-card-top">
+                            <div class="img-wrapper"><img src="nathan.png" alt="Nathan Ruano"></div>
+                        </div>
+                        <div class="sc-card-bottom">
+                            <span class="name">Nathan Ruano</span>
+                            <span class="role">Co-Creador y Desarrollador</span>
+                        </div>
+                    </div>
+                </section>
+
+                <h2 class="sc-section-title reveal" id="features">Mecánicas de Juego</h2>
+                <section class="sc-grid">
+                    <div class="sc-card reveal">
+                        <div class="sc-card-top"><div class="sc-feature-icon">🎮</div></div>
                         <div class="sc-card-bottom">
                             <span class="name">Control Milimétrico</span>
                             <span class="role">Respuesta inmediata sin latencia. Precisión de píxel.</span>
                         </div>
                     </div>
                     <div class="sc-card reveal">
-                        <div class="sc-card-top">
-                            <div class="sc-feature-icon">⏱️</div>
-                        </div>
+                        <div class="sc-card-top"><div class="sc-feature-icon">⏱️</div></div>
                         <div class="sc-card-bottom">
                             <span class="name">Desafío Contrarreloj</span>
                             <span class="role">Un cronómetro implacable te empuja al límite.</span>
                         </div>
                     </div>
                     <div class="sc-card reveal">
-                        <div class="sc-card-top">
-                            <div class="sc-feature-icon">💀</div>
-                        </div>
+                        <div class="sc-card-top"><div class="sc-feature-icon">💀</div></div>
                         <div class="sc-card-bottom">
                             <span class="name">Dificultad Extrema</span>
                             <span class="role">Rozar un pincho significa reiniciar. Sin piedad.</span>
@@ -497,137 +398,111 @@
                     </div>
                 </section>
 
-                <section class="sc-hero-banner sc-bg-dark-blue reveal" id="download" style="text-align: center; justify-content: center; flex-direction: column;">
-                    <h2 style="font-size: 3rem; margin-bottom: 10px; font-family: 'Bebas Neue';">EL RETO TE ESPERA</h2>
+                <h2 class="sc-section-title reveal" id="video">Gameplay en Acción</h2>
+                <div class="video-slot reveal">
+                    <div id="videoContainer" class="video-placeholder" onclick="activateVideo()">
+                        <div class="video-play-icon">▶</div>
+                        <div class="video-label-tag">🎬 PULSA PARA CARGAR GAMEPLAY 🎬</div>
+                    </div>
+                    <div class="video-caption">⚡ RANURA LISTA · AÑADE TU ARCHIVO MP4 O WEBM ⚡</div>
+                </div>
+
+                <div class="sc-download-banner reveal" id="download">
+                    <h2>EL RETO TE ESPERA</h2>
                     <p>Descarga la versión Alpha totalmente gratis. Domina la torre bajo el fulgor del tubo catódico.</p>
-                    <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-top: 20px;">
+                    <div class="dl-btns">
+                        <!-- CAMBIA "#" POR TU ENLACE DE DESCARGA REAL -->
                         <a href="#" class="sc-btn sc-btn-cyan">🪟 WINDOWS (.EXE)</a>
                         <a href="#" class="sc-btn sc-btn-purple">🐧 LINUX (.ZIP)</a>
                     </div>
-                </section>
+                </div>
 
-                <h2 class="sc-section-title">¿Bugs? ¿Sugerencias?</h2>
-                <section class="sc-card reveal" id="contact" style="padding: 40px 30px; margin-bottom: 60px;">
+                <h2 class="sc-section-title reveal">¿Bugs? ¿Sugerencias?</h2>
+                <div class="sc-form-card reveal" id="contact">
                     <form action="https://formspree.io/f/xpqonjya" method="POST" class="dark-form">
                         <div class="form-row">
                             <input type="text" name="name" placeholder="Nombre / Gremio" required>
                             <input type="email" name="email" placeholder="Email" required>
                         </div>
                         <textarea name="message" rows="5" placeholder="Escribe tu mensaje, hereje..." required></textarea>
-                        <button type="submit" class="sc-btn sc-btn-cyan" style="width: fit-content;">Enviar a la torre</button>
+                        <button type="submit" class="sc-btn sc-btn-cyan" style="width:fit-content;">Enviar a la torre</button>
                     </form>
-                </section>
+                </div>
+
             </main>
 
             <footer class="sc-footer">
-                <p>© 2026 Proyectos Indie SMX · Ascend Tower · Desarrollado con Godot Engine y aura CRT.</p>
+                <p>© 2026 Proyectos Indie SMX · Ascend Tower · Desarrollado con Godot Engine y aura CRT</p>
             </footer>
+
         </div>
     </div>
 </div>
 
-<canvas id="particlesCanvas"></canvas>
-
 <script>
-    // efecto de partículas tipo ascua (estilo CRT)
+    // PARTÍCULAS
     const canvas = document.getElementById('particlesCanvas');
-    const ctxP = canvas.getContext('2d');
-    let width, height, particlesArray = [];
-
-    function resizeCanvas() {
-        width = canvas.width = window.innerWidth;
-        height = canvas.height = window.innerHeight;
+    const ctx = canvas.getContext('2d');
+    let W, H, parts = [];
+    function resize() { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
+    function initParts() {
+        parts = [];
+        const n = Math.min(90, Math.floor(W * H / 9000));
+        for (let i = 0; i < n; i++) parts.push({ x: Math.random()*W, y: Math.random()*H, r: Math.random()*1.8+0.4, vy: Math.random()*0.28+0.06, a: Math.random()*0.5+0.15 });
     }
-
-    function initParticles() {
-        particlesArray = [];
-        let num = Math.min(100, Math.floor(width * height / 8000));
-        for(let i = 0; i < num; i++) {
-            particlesArray.push({
-                x: Math.random() * width,
-                y: Math.random() * height,
-                radius: Math.random() * 2 + 0.8,
-                speedY: Math.random() * 0.25 + 0.08,
-                alpha: Math.random() * 0.5 + 0.2
-            });
+    function animParts() {
+        ctx.clearRect(0, 0, W, H);
+        for (const p of parts) {
+            ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+            ctx.fillStyle = `rgba(0,160,255,${p.a})`; ctx.fill();
+            p.y -= p.vy;
+            if (p.y + p.r < 0) { p.y = H + p.r; p.x = Math.random()*W; }
         }
+        requestAnimationFrame(animParts);
     }
+    window.addEventListener('resize', () => { resize(); initParts(); });
+    resize(); initParts(); animParts();
 
-    function animateParticles() {
-        if (!ctxP) return;
-        ctxP.clearRect(0, 0, width, height);
-        ctxP.fillStyle = '#00a6ff';
-        for (let p of particlesArray) {
-            ctxP.beginPath();
-            ctxP.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-            ctxP.fillStyle = `rgba(0, 166, 255, ${p.alpha * 0.7})`;
-            ctxP.fill();
-            p.y -= p.speedY;
-            if(p.y + p.radius < 0) {
-                p.y = height + p.radius;
-                p.x = Math.random() * width;
-            }
-        }
-        requestAnimationFrame(animateParticles);
-    }
-
-    window.addEventListener('resize', () => {
-        resizeCanvas();
-        initParticles();
-    });
-    resizeCanvas();
-    initParticles();
-    animateParticles();
-
-    // interaccion linterna / antorchas + mouse
-    const vignetteDiv = document.getElementById('vignette');
-    let igniteTimer = null;
-
+    // LUZ RATÓN (linterna que sigue el cursor)
+    const vig = document.getElementById('vignette');
+    let ignTimer = null;
     document.addEventListener('mousemove', (e) => {
-        if (!vignetteDiv.classList.contains('ignited')) {
-            vignetteDiv.style.setProperty('--mouse-x', e.clientX + 'px');
-            vignetteDiv.style.setProperty('--mouse-y', e.clientY + 'px');
+        if (!vig.classList.contains('ignited')) {
+            // Usamos porcentaje para que funcione bien con background-attachment:fixed
+            const xPct = (e.clientX / window.innerWidth  * 100).toFixed(1) + '%';
+            const yPct = (e.clientY / window.innerHeight * 100).toFixed(1) + '%';
+            vig.style.setProperty('--mouse-x', xPct);
+            vig.style.setProperty('--mouse-y', yPct);
         }
     });
+    function startIgnite() { ignTimer = setTimeout(() => vig.classList.add('ignited'), 5000); }
+    function stopIgnite() { if (ignTimer) { clearTimeout(ignTimer); ignTimer = null; } }
 
-    function startIgnite() {
-        igniteTimer = setTimeout(() => {
-            vignetteDiv.classList.add('ignited');
-        }, 5000);
-    }
-    function stopIgnite() {
-        if(igniteTimer) {
-            clearTimeout(igniteTimer);
-            igniteTimer = null;
-        }
-        // opcional: si se quiere resetear al salir, removemos la clase pero mejor mantener hasta recargar? Lo dejamos interactivo
-        // Si prefieres que no permanezca iluminado al salir descomentar:
-        // if(vignetteDiv.classList.contains('ignited')) vignetteDiv.classList.remove('ignited');
-    }
+    // RANURA DE VIDEO
+    window.activateVideo = function() {
+        const cont = document.getElementById('videoContainer');
+        const existing = cont.querySelector('video');
+        if (existing) { existing.paused ? existing.play() : existing.pause(); return; }
+        const vid = document.createElement('video');
+        vid.controls = true;
+        vid.style.cssText = 'width:100%;border-radius:4px;display:block;';
+        // ── CUANDO TENGAS EL VIDEO, DESCOMENTA Y CAMBIA ESTE NOMBRE ──
+        // vid.src = "gameplay.mp4";
+        cont.innerHTML = '';
+        cont.style.cssText = 'background:transparent;cursor:default;';
+        cont.classList.remove('video-placeholder');
+        cont.appendChild(vid);
+    };
 
-    // efecto reveal con intersection observer
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-            }
-        });
-    }, { threshold: 0.1, rootMargin: "0px 0px -30px 0px" });
+    // REVEAL SCROLL
+    const obs = new IntersectionObserver((entries) => {
+        entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
-    document.querySelectorAll('.reveal').forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(28px)';
-        el.style.transition = 'opacity 0.7s ease, transform 0.7s ease';
-        observer.observe(el);
-    });
-
-    // pequeño fix para el header de antorchas en móvil si no hay hover, no afecta.
-    if(window.innerWidth < 860) {
-        let torches = document.querySelectorAll('.torch-hitbox');
-        torches.forEach(t => {
-            t.style.pointerEvents = 'none';
-        });
+    // MÓVIL
+    if (window.innerWidth < 860) {
+        document.querySelectorAll('.torch-hitbox').forEach(t => t.style.pointerEvents = 'none');
     }
 </script>
 </body>
