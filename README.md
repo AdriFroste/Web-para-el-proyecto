@@ -20,7 +20,7 @@ O también la encuentras en **About** del repositorio (en la columna derecha).
 
 ---
 
-##De que trata Ascend Tower?
+## De que trata Ascend Tower?
 Ascend Tower es un plataformas 2d, el protagonista, movido por la ambición de dejar atrás la pobreza, se adentra en una legendaria torre que custodia incalculables tesoros en cada una de sus plantas. El núcleo del juego se basa en un control refinado y una dificultad progresiva a lo largo de 10 niveles, donde el objetivo principal es recolectar todas las riquezas posibles para alcanzar la fortuna soñada. Con una estética retro inspirada en los efectos VHS y una banda sonora envolvente, el juego ofrece un reto constante de riesgo y recompensa en cada salto.
 
 
