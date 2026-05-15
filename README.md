@@ -50,7 +50,6 @@ Entra en la web y mándanos un mensaje desde el formulario de contacto — nos l
 | Archivo | Descripción |
 |---|---|
 | `index.html` | Página principal |
-| `styles.css` | Estilos de la página |
 | `*.png / *.gif` | Imágenes y elementos visuales |
 | `LICENSE` | Licencia de uso libre |
 
